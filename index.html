@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>LAO | منوی کافه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#D6EEFA;
+    --blue-soft:#F1FAFD;
+    --blue-mid:#AEDCF2;
+    --blue-deep:#6BAAD1;
+    --ink:#2F5068;
+    --ink-soft:#7A9AB0;
+    --bg:#FCFEFF;
+    --card:#FFFFFF;
+    --line:#E7F4FB;
+    --radius-lg:28px;
+    --radius-md:20px;
+    --radius-sm:14px;
+    --shadow-soft:0 10px 30px rgba(107,170,209,0.10);
+    --shadow-pop:0 4px 0 rgba(107,170,209,0.30);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Vazirmatn',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo Bhaijaan 2',sans-serif;
+  }
+  ::selection{background:var(--blue);color:#fff;}
+
+  /* ---------- Edit trigger ---------- */
+  #editTrigger{
+    position:fixed;
+    top:18px;
+    left:18px;
+    z-index:60;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:transform .2s ease;
+  }
+  #editTrigger:hover{transform:translateY(-2px) scale(1.04);}
+  #editTrigger svg{width:20px;height:20px;stroke:var(--blue-deep);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:64px 20px 40px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,0.7), transparent 45%),
+      linear-gradient(180deg, var(--blue) 0%, #FFFFFF 100%);
+    border-radius:0 0 46px 46px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-60px;left:50%;
+    transform:translateX(-50%);
+    width:140%;
+    height:120px;
+    background:var(--bg);
+    border-radius:50%;
+  }
+  .hero-logo{
+    position:relative;
+    z-index:2;
+    font-size:clamp(3rem,14vw,4.6rem);
+    font-weight:800;
+    letter-spacing:6px;
+    color:#fff;
+    margin:0;
+    text-shadow:
+      0 6px 0 rgba(107,170,209,0.35),
+      0 14px 24px rgba(107,170,209,0.25);
+  }
+  .hero-tagline{
+    position:relative;
+    z-index:2;
+    margin:10px 0 0;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+
+  /* ---------- Category cards ---------- */
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 18px 70px;
+    position:relative;
+    z-index:3;
+  }
+  .section-label{
+    text-align:center;
+    font-size:.85rem;
+    color:var(--ink-soft);
+    letter-spacing:1px;
+    margin:8px 0 22px;
+  }
+  .cat-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    margin-bottom:16px;
+    box-shadow:var(--shadow-soft);
+    overflow:hidden;
+    transition:box-shadow .25s ease;
+  }
+  .cat-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 22px;
+    cursor:pointer;
+    gap:14px;
+  }
+  .cat-head h2{
+    margin:0;
+    font-size:1.35rem;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .cat-count{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    font-weight:500;
+    background:var(--blue-soft);
+    padding:4px 12px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .chevron{
+    width:18px;height:18px;
+    stroke:var(--blue-deep);
+    transition:transform .3s ease;
+    flex-shrink:0;
+  }
+  .cat-card.open .chevron{transform:rotate(180deg);}
+  .cat-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+    border-top:0 solid var(--line);
+  }
+  .cat-card.open .cat-body{border-top:1px solid var(--line);}
+  .item-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 22px;
+    border-bottom:1px solid var(--blue-soft);
+  }
+  .item-row:last-child{border-bottom:none;}
+  .item-thumb{
+    width:52px;height:52px;
+    border-radius:16px;
+    background:var(--blue-soft);
+    flex-shrink:0;
+    object-fit:cover;
+    background-size:cover;
+    background-position:center;
+  }
+  .item-info{flex:1;min-width:0;}
+  .item-name{
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+    margin:0 0 3px;
+  }
+  .item-desc{
+    font-size:.8rem;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .item-price{
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--blue-deep);
+    white-space:nowrap;
+  }
+  .empty-note{
+    padding:20px 22px;
+    color:var(--ink-soft);
+    font-size:.9rem;
+    text-align:center;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.78rem;
+    padding:20px;
+  }
+
+  /* ---------- Modal shared ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(32,67,96,0.35);
+    backdrop-filter:blur(2px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-box{
+    background:#fff;
+    border-radius:var(--radius-lg);
+    width:100%;
+    max-width:420px;
+    padding:28px 24px;
+    box-shadow:0 20px 60px rgba(32,67,96,0.25);
+    position:relative;
+    max-height:88vh;
+    overflow-y:auto;
+  }
+  .modal-close{
+    position:absolute;
+    top:16px; left:16px;
+    width:32px;height:32px;
+    border-radius:50%;
+    border:none;
+    background:var(--blue-soft);
+    color:var(--blue-deep);
+    cursor:pointer;
+    font-size:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-title{
+    margin:0 0 6px;
+    font-size:1.3rem;
+    font-weight:700;
+    text-align:center;
+  }
+  .modal-sub{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:.85rem;
+    margin:0 0 20px;
+  }
+  .field{margin-bottom:14px;}
+  .field label{
+    display:block;
+    font-size:.82rem;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+    font-weight:500;
+  }
+  .field input, .field textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--line);
+    background:var(--blue-soft);
+    font-family:'Vazirmatn',sans-serif;
+    font-size:.92rem;
+    color:var(--ink);
+    outline:none;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--blue-mid);}
+  .btn{
+    width:100%;
+    padding:13px;
+    border-radius:var(--radius-sm);
+    border:none;
+    background:var(--blue-deep);
+    color:#fff;
+    font-family:'Vazirmatn',sans-serif;
+    font-weight:700;
+    font-size:.95rem;
+    cursor:pointer;
+    box-shadow:0 4px 0 #5590b5;
+    transition:transform .15s ease;
+  }
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 #5590b5;}
+  .btn.ghost{
+    background:var(--blue-soft);
+    color:var(--blue-deep);
+    box-shadow:none;
+    margin-top:8px;
+  }
+  .btn.danger{
+    background:#fbe6e6;
+    color:#c94b4b;
+    box-shadow:none;
+  }
+  .error-msg{
+    color:#c94b4b;
+    font-size:.82rem;
+    text-align:center;
+    margin:-6px 0 12px;
+    min-height:16px;
+  }
+
+  /* ---------- Admin dashboard ---------- */
+  #adminModal .modal-box{max-width:520px;text-align:right;}
+  .admin-top{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:16px;
+  }
+  .admin-cat-block{
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:14px;
+    margin-bottom:16px;
+    background:var(--blue-soft);
+  }
+  .admin-cat-block .field input{background:#fff;}
+  .admin-item-block{
+    background:#fff;
+    border-radius:var(--radius-sm);
+    padding:12px;
+    margin-bottom:10px;
+    border:1px solid var(--line);
+  }
+  .admin-item-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .thumb-preview{
+    width:44px;height:44px;
+    border-radius:12px;
+    object-fit:cover;
+    background:var(--blue-soft);
+    flex-shrink:0;
+  }
+  .row-between{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+  }
+  .small-btn{
+    border:none;
+    background:#fbe6e6;
+    color:#c94b4b;
+    font-size:.75rem;
+    padding:6px 10px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:'Vazirmatn',sans-serif;
+  }
+  .file-btn{
+    display:inline-block;
+    font-size:.75rem;
+    color:var(--blue-deep);
+    background:var(--blue-soft);
+    padding:6px 10px;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+  }
+  .file-btn input{display:none;}
+  .divider{
+    border:none;border-top:1px dashed var(--line);
+    margin:18px 0;
+  }
+  .toast{
+    position:fixed;
+    bottom:24px;left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--ink);
+    color:#fff;
+    padding:12px 20px;
+    border-radius:16px;
+    font-size:.85rem;
+    opacity:0;
+    pointer-events:none;
+    transition:all .3s ease;
+    z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+  <!-- Floating edit trigger -->
+  <div id="editTrigger" title="ورود مدیریت">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+    </svg>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 class="hero-logo">LAO</h1>
+    <p class="hero-tagline">منوی کافه</p>
+  </div>
+
+  <div class="wrap">
+    <p class="section-label">برای دیدن هر بخش، روی آن ضربه بزنید</p>
+    <div id="categoryList"></div>
+  </div>
+
+  <footer>ساخته‌شده برای LAO</footer>
+  <div class="toast" id="toast"></div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+      <h3 class="modal-title">ورود مدیریت</h3>
+      <p class="modal-sub">برای ویرایش منو وارد شوید</p>
+      <div class="field">
+        <label>نام کاربری</label>
+        <input type="text" id="loginUser" autocomplete="off" placeholder="نام کاربری">
+      </div>
+      <div class="field">
+        <label>رمز عبور</label>
+        <input type="password" id="loginPass" placeholder="رمز عبور">
+      </div>
+      <p class="error-msg" id="loginError"></p>
+      <button class="btn" onclick="tryLogin()">ورود</button>
+    </div>
+  </div>
+
+  <!-- Admin Modal -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAdmin()">✕</button>
+      <div class="admin-top">
+        <h3 class="modal-title" style="margin:0;">پنل ویرایش منو</h3>
+      </div>
+      <p class="modal-sub" style="margin-top:0;">تغییرات بلافاصله ذخیره می‌شوند</p>
+
+      <div id="adminCategories"></div>
+
+      <button class="btn ghost" onclick="addCategory()">+ افزودن دسته‌بندی جدید</button>
+      <hr class="divider">
+      <button class="btn danger" onclick="logoutAdmin()">خروج از حساب مدیریت</button>
+    </div>
+  </div>
+
+<script>
+/* ================= CONFIG ================= */
+const fallbackData = {
+  categories: [
+    { id: 'c1', name: 'بار گرم', items: [
+      { id: 'i1', name: 'اسپرسو', price: '70000', desc: '', image: '' },
+      { id: 'i2', name: 'کاپوچینو', price: '85000', desc: '', image: '' }
+    ]},
+    { id: 'c2', name: 'بار سرد', items: [
+      { id: 'i3', name: 'آیس لاته', price: '95000', desc: '', image: '' }
+    ]},
+    { id: 'c3', name: 'کیک‌ها', items: [
+      { id: 'i4', name: 'کیک شکلاتی', price: '120000', desc: '', image: '' }
+    ]}
+  ]
+};
+
+function cid(){ return 'c_' + Math.random().toString(36).slice(2,9); }
+function iid(){ return 'i_' + Math.random().toString(36).slice(2,9); }
+
+let data = { categories: [] };
+let isLoggedIn = false;
+let saveTimer = null;
+let connectionOk = true;
+
+/* ================= API HELPERS ================= */
+async function apiPost(path, payload){
+  const res = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify(payload)
+  });
+  return res.json();
+}
+
+async function loadFromServer(){
+  try{
+    const res = await fetch('/api/load', { credentials: 'same-origin' });
+    if(!res.ok) throw new Error('bad status');
+    const json = await res.json();
+    data = json.data || { categories: [] };
+    isLoggedIn = !!json.loggedIn;
+    connectionOk = true;
+  }catch(e){
+    connectionOk = false;
+    data = fallbackData;
+    showToast('اتصال به سرور برقرار نشد — نسخه آفلاین نمایش داده می‌شود');
+  }
+  renderMenu();
+}
+
+function queueSave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(doSave, 500);
+}
+
+async function doSave(){
+  if(!connectionOk) return;
+  try{
+    const res = await apiPost('/api/save', { data });
+    if(res.ok){
+      data = res.data;
+      renderAdmin();
+      renderMenu();
+      showToast('ذخیره شد');
+    }else{
+      showToast(res.message || 'خطا در ذخیره‌سازی');
+    }
+  }catch(e){
+    showToast('اتصال برقرار نشد، دوباره تلاش کنید');
+  }
+}
+
+/* ================= IMAGE COMPRESSION ================= */
+function compressImage(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const maxDim = 800;
+        let { width, height } = img;
+        if(width > maxDim || height > maxDim){
+          if(width > height){ height = Math.round(height * maxDim / width); width = maxDim; }
+          else{ width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.75));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ================= PUBLIC MENU RENDER ================= */
+function formatPrice(p){
+  const n = parseInt((p||'0').toString().replace(/[^\d]/g,''),10) || 0;
+  return n.toLocaleString('fa-IR') + ' تومان';
+}
+
+function renderMenu(){
+  const list = document.getElementById('categoryList');
+  list.innerHTML = '';
+  if(!data.categories || !data.categories.length){
+    list.innerHTML = '<p class="empty-note">هنوز دسته‌بندی‌ای اضافه نشده است.</p>';
+    return;
+  }
+  data.categories.forEach(cat => {
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+    card.dataset.id = cat.id;
+
+    const head = document.createElement('div');
+    head.className = 'cat-head';
+    head.innerHTML = `
+      <h2>${escapeHtml(cat.name)}</h2>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="cat-count">${cat.items.length} آیتم</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>`;
+    head.onclick = () => toggleCategory(card);
+
+    const body = document.createElement('div');
+    body.className = 'cat-body';
+
+    if(!cat.items.length){
+      body.innerHTML = '<p class="empty-note">آیتمی در این دسته وجود ندارد.</p>';
+    }else{
+      cat.items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        const thumbStyle = item.image ? `background-image:url('${item.image}')` : '';
+        row.innerHTML = `
+          <div class="item-thumb" style="${thumbStyle}"></div>
+          <div class="item-info">
+            <p class="item-name">${escapeHtml(item.name)}</p>
+            ${item.desc ? `<p class="item-desc">${escapeHtml(item.desc)}</p>` : ''}
+          </div>
+          <div class="item-price">${formatPrice(item.price)}</div>
+        `;
+        body.appendChild(row);
+      });
+    }
+
+    card.appendChild(head);
+    card.appendChild(body);
+    list.appendChild(card);
+  });
+}
+
+function toggleCategory(card){
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.cat-card.open').forEach(c => {
+    c.classList.remove('open');
+    c.querySelector('.cat-body').style.maxHeight = null;
+  });
+  if(!wasOpen){
+    card.classList.add('open');
+    const body = card.querySelector('.cat-body');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+function escapeHtml(str){
+  return (str||'').toString()
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+/* ================= AUTH ================= */
+document.getElementById('editTrigger').onclick = () => {
+  if(!connectionOk){
+    showToast('برای ویرایش، اتصال به سرور لازم است');
+    return;
+  }
+  if(isLoggedIn){
+    openAdmin();
+  }else{
+    openModal('loginModal');
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginError').textContent = '';
+  }
+};
+
+async function tryLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  const btn = document.querySelector('#loginModal .btn');
+  btn.disabled = true;
+  try{
+    const res = await apiPost('/api/login', { username: u, password: p });
+    if(res.ok){
+      isLoggedIn = true;
+      closeModal('loginModal');
+      openAdmin();
+    }else{
+      document.getElementById('loginError').textContent = 'نام کاربری یا رمز عبور اشتباه است';
+    }
+  }catch(e){
+    document.getElementById('loginError').textContent = 'اتصال به سرور برقرار نشد';
+  }
+  btn.disabled = false;
+}
+
+async function logoutAdmin(){
+  try{ await apiPost('/api/logout', {}); }catch(e){}
+  isLoggedIn = false;
+  closeAdmin();
+  showToast('از حساب مدیریت خارج شدید');
+}
+
+/* ================= MODAL HELPERS ================= */
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+/* ================= ADMIN PANEL ================= */
+function openAdmin(){
+  renderAdmin();
+  openModal('adminModal');
+}
+function closeAdmin(){
+  closeModal('adminModal');
+  renderMenu();
+}
+
+function renderAdmin(){
+  const wrap = document.getElementById('adminCategories');
+  wrap.innerHTML = '';
+
+  data.categories.forEach(cat => {
+    const block = document.createElement('div');
+    block.className = 'admin-cat-block';
+
+    const nameField = document.createElement('div');
+    nameField.className = 'field';
+    nameField.innerHTML = `<label>نام دسته‌بندی</label>`;
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.value = cat.name;
+    nameInput.oninput = () => { cat.name = nameInput.value; queueSave(); };
+    nameField.appendChild(nameInput);
+    block.appendChild(nameField);
+
+    cat.items.forEach(item => {
+      block.appendChild(buildItemBlock(cat, item));
+    });
+
+    const addItemBtn = document.createElement('button');
+    addItemBtn.className = 'btn ghost';
+    addItemBtn.style.marginTop = '4px';
+    addItemBtn.textContent = '+ افزودن آیتم';
+    addItemBtn.onclick = () => {
+      cat.items.push({ id: iid(), name: 'آیتم جدید', price: '0', desc: '', image: '' });
+      renderAdmin();
+      doSave();
+    };
+    block.appendChild(addItemBtn);
+
+    const delCatBtn = document.createElement('button');
+    delCatBtn.className = 'small-btn';
+    delCatBtn.style.marginTop = '10px';
+    delCatBtn.textContent = 'حذف این دسته‌بندی';
+    delCatBtn.onclick = () => {
+      if(confirm('این دسته‌بندی و همه آیتم‌های آن حذف شود؟')){
+        data.categories = data.categories.filter(c => c.id !== cat.id);
+        renderAdmin();
+        doSave();
+      }
+    };
+    block.appendChild(delCatBtn);
+
+    wrap.appendChild(block);
+  });
+}
+
+function buildItemBlock(cat, item){
+  const box = document.createElement('div');
+  box.className = 'admin-item-block';
+
+  const top = document.createElement('div');
+  top.className = 'row-between';
+  top.style.marginBottom = '8px';
+
+  const thumb = document.createElement('div');
+  thumb.className = 'thumb-preview';
+  if(item.image) thumb.style.backgroundImage = `url('${item.image}')`;
+  thumb.style.backgroundSize = 'cover';
+  thumb.style.backgroundPosition = 'center';
+
+  const fileLabel = document.createElement('label');
+  fileLabel.className = 'file-btn';
+  fileLabel.textContent = 'انتخاب عکس';
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'image/*';
+  fileInput.onchange = async (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 8 * 1024 * 1024){
+      showToast('حجم عکس باید کمتر از ۸ مگابایت باشد');
+      return;
+    }
+    try{
+      const compressed = await compressImage(file);
+      item.image = compressed;
+      thumb.style.backgroundImage = `url('${item.image}')`;
+      doSave();
+    }catch(err){
+      showToast('خطا در پردازش عکس');
+    }
+  };
+  fileLabel.appendChild(fileInput);
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'small-btn';
+  delBtn.textContent = 'حذف آیتم';
+  delBtn.onclick = () => {
+    cat.items = cat.items.filter(i => i.id !== item.id);
+    renderAdmin();
+    doSave();
+  };
+
+  const leftGroup = document.createElement('div');
+  leftGroup.style.display = 'flex';
+  leftGroup.style.alignItems = 'center';
+  leftGroup.style.gap = '8px';
+  leftGroup.appendChild(thumb);
+  leftGroup.appendChild(fileLabel);
+
+  top.appendChild(leftGroup);
+  top.appendChild(delBtn);
+  box.appendChild(top);
+
+  const grid = document.createElement('div');
+  grid.className = 'admin-item-grid';
+
+  const nameF = document.createElement('div');
+  nameF.className = 'field';
+  nameF.innerHTML = '<label>نام آیتم</label>';
+  const nameIn = document.createElement('input');
+  nameIn.type = 'text';
+  nameIn.value = item.name;
+  nameIn.oninput = () => { item.name = nameIn.value; queueSave(); };
+  nameF.appendChild(nameIn);
+
+  const priceF = document.createElement('div');
+  priceF.className = 'field';
+  priceF.innerHTML = '<label>قیمت (تومان)</label>';
+  const priceIn = document.createElement('input');
+  priceIn.type = 'text';
+  priceIn.inputMode = 'numeric';
+  priceIn.value = item.price;
+  priceIn.oninput = () => { item.price = priceIn.value.replace(/[^\d]/g,''); queueSave(); };
+  priceF.appendChild(priceIn);
+
+  grid.appendChild(nameF);
+  grid.appendChild(priceF);
+  box.appendChild(grid);
+
+  const descF = document.createElement('div');
+  descF.className = 'field';
+  descF.style.marginTop = '4px';
+  descF.innerHTML = '<label>توضیح کوتاه (اختیاری)</label>';
+  const descIn = document.createElement('input');
+  descIn.type = 'text';
+  descIn.value = item.desc || '';
+  descIn.oninput = () => { item.desc = descIn.value; queueSave(); };
+  descF.appendChild(descIn);
+  box.appendChild(descF);
+
+  return box;
+}
+
+function addCategory(){
+  data.categories.push({ id: cid(), name: 'دسته‌بندی جدید', items: [] });
+  renderAdmin();
+  doSave();
+}
+
+/* ================= TOAST ================= */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ================= INIT ================= */
+loadFromServer();
+
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  ov.addEventListener('click', (e) => {
+    if(e.target === ov) ov.classList.remove('show');
+  });
+});
+</script>
+</body>
+</html>
