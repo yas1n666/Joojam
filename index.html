@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="چرخه">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#b5cbea" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121a36" media="(prefers-color-scheme: dark)">
+<title>چرخه من</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🍒</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 fill=%27%23b5cbea%27/><text y=%27.8em%27 x=%2712%27 font-size=%2775%27>🍒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#bcd0ea;--card:#eef4fc;--tx:#1a2340;--mu:#3f4d6d;--pk:#7e1230;--pk2:#f4d9e0;--gr:#5d82b8;--gr2:#dbe7f7;--pu:#2f4a8f;--pu2:#e0e9f8;--bd:rgba(255,255,255,.6);--rt:#7e1230;--g:rgba(255,255,255,.5);--gl:rgba(255,255,255,.72);--sh:rgba(36,56,120,.32);--wine:linear-gradient(180deg,#a3173d,#72102b)}
+@media(prefers-color-scheme:dark){:root{--bg:#121a36;--card:#1a2542;--tx:#eaf0fb;--mu:#a7b6d8;--pk:#d6395f;--pk2:#3b1c2f;--gr:#7fa4de;--gr2:#223458;--pu:#9db8f2;--pu2:#202c52;--bd:rgba(255,255,255,.16);--rt:#ff9bb4;--g:rgba(255,255,255,.09);--gl:rgba(255,255,255,.2);--sh:rgba(0,0,0,.5);--wine:linear-gradient(180deg,#e04a70,#b02850)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:"Vazirmatn",-apple-system,Tahoma,sans-serif;font-size:15px;line-height:1.6}
+body{padding:calc(env(safe-area-inset-top,0px) + 10px) 18px calc(env(safe-area-inset-bottom,0px) + 100px);max-width:480px;margin:0 auto}
+b,strong{font-weight:600}
+.hd{display:flex;justify-content:space-between;align-items:flex-end;margin:18px 0 6px}
+h1{font-size:28px;font-weight:600;margin:0;letter-spacing:-.5px}
+.by{font-size:10.5px;color:var(--mu);text-align:left;line-height:1.7;padding-bottom:6px}
+.sub{color:var(--mu);font-size:13px;margin:0 0 18px}
+h2{font-size:12.5px;font-weight:500;color:var(--mu);margin:0 0 12px;letter-spacing:.3px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:20px;margin-bottom:14px}
+.hero{text-align:center;padding:30px 18px 24px;background:linear-gradient(180deg,var(--pk2),var(--card) 65%)}
+.ring{width:208px;height:208px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--pk) calc(var(--p)*1%),var(--bd) 0)}
+.ring .in{width:188px;height:188px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px}
+.big{font-size:58px;font-weight:300;line-height:1.1;letter-spacing:-1px}
+.lbl{font-size:13px;color:var(--mu);line-height:1.6}
+.pill{display:inline-block;padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:500;margin-top:4px}
+.p-red{background:var(--pk2);color:var(--rt)}.p-gr,.p-pu{background:var(--gr2);color:var(--pu)}
+button,input,select{font:inherit;color:inherit}
+.btn{width:100%;padding:15px;border:0;border-radius:16px;background:var(--tx);color:var(--card);font-weight:500;font-size:15px;margin-top:12px}
+.btn.alt{background:transparent;border:1px solid var(--bd);color:var(--tx)}
+.btn:active{opacity:.75}
+input[type=text],input[type=number],input[type=search],select{width:100%;padding:13px 16px;border-radius:16px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14.5px;min-height:48px}
+label,.gl{font-size:12px;color:var(--mu);display:block;margin:14px 0 6px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.dpb{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--bd);background:var(--bg);font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
+.dpb::after{content:"▾";color:var(--mu)}
+.tabs{position:fixed;bottom:0;left:0;right:0;display:flex;padding:8px 6px calc(env(safe-area-inset-bottom,0px) + 8px);background:color-mix(in srgb,var(--card) 84%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid var(--bd);z-index:9}
+.tabs button{flex:1;border:0;background:none;color:var(--mu);font-size:10.5px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;position:relative}
+.tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tabs button *{pointer-events:none}
+.tabs button.on{color:var(--tx);font-weight:600}
+.tabs button.on::after{content:"";position:absolute;top:-9px;width:22px;height:3px;border-radius:2px;background:var(--pk)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--bd);font-size:13.5px}
+.item:last-child{border:0}.item b{font-weight:500;text-align:left}.item span{color:var(--mu)}
+.x{background:none;border:0;color:var(--mu);font-size:22px;padding:4px 10px}
+ul{margin:4px 0;padding-inline-start:20px;line-height:2;font-size:13.5px;color:var(--mu)}
+.warn{background:var(--pu2);border-radius:16px;padding:12px 16px;font-size:13px;line-height:1.9;margin-top:14px;text-align:right}
+.tip{background:var(--pu2);border-radius:16px;padding:14px 16px;font-size:13px;line-height:1.95;margin-top:14px}
+.tip b{color:var(--pu)}.tip p{margin:0 0 8px}.tip p:last-child{margin:0}
+.bar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:6px 0 12px}.bar i{display:block}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mu)}
+.dt{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-inline-end:6px}
+.hid{display:none}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-top:12px}
+.w{font-size:11px;color:var(--mu);padding-bottom:6px}
+.c{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:13.5px;position:relative}
+.c[data-pick]{cursor:pointer}
+.pd{background:var(--pk);color:#4a1822}
+.pp{box-shadow:inset 0 0 0 1.5px var(--pk);color:var(--rt)}
+.fz{background:var(--gr2);color:var(--pu)}
+.ov{background:var(--pu);color:var(--card)}
+.td{outline:1.5px solid var(--tx);outline-offset:1px}
+.lg::after{content:"";position:absolute;bottom:4px;width:4px;height:4px;border-radius:50%;background:var(--gr)}
+.chip{display:inline-block;margin:3px 2px;padding:8px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);font-size:13px}
+.chip.on{background:var(--tx);color:var(--card);border-color:var(--tx)}
+.seg{display:flex;background:var(--bg);border-radius:14px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;border:0;background:none;padding:9px;border-radius:11px;font-size:13px;color:var(--mu)}
+.seg button.on{background:var(--card);color:var(--tx);font-weight:500;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.nt{padding:14px 0;border-bottom:1px solid var(--bd)}.nt:last-child{border:0;padding-bottom:0}
+.nt b{font-size:14px;display:block}
+.nt p{margin:5px 0 0;font-size:13px;line-height:1.95;color:var(--mu)}
+details{border-bottom:1px solid var(--bd);padding:14px 0}details:last-child{border:0}
+summary{font-weight:500;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;line-height:1.7}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--mu);font-size:20px;line-height:1;font-weight:300}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 0;font-size:13.5px;line-height:2;color:var(--mu)}
+summary small{color:var(--rt);font-size:11px;font-weight:400}
+.sheet{position:fixed;inset:0;background:rgba(20,26,22,.4);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet.hid{display:none}
+.sb{width:100%;max-width:480px;background:var(--card);border-radius:28px 28px 0 0;padding:12px 18px calc(env(safe-area-inset-bottom,0px) + 18px);animation:up .25s ease}
+.sh{width:40px;height:4px;border-radius:2px;background:var(--bd);margin:0 auto 12px}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.dp .row{gap:6px}
+button:disabled{opacity:.25}
+
+/* ---- liquid glass: cornflower & cherry wine ---- */
+html{background:var(--bg);min-height:100%}
+body{background:transparent;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 118px)}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(70% 45% at 0% 0%,rgba(255,255,255,.75),transparent 70%),radial-gradient(80% 50% at 100% 25%,rgba(122,160,222,.55),transparent 70%),linear-gradient(170deg,#d6e4f7,#aac4e8 55%,#8eaedb)}
+body::after{content:"";position:fixed;z-index:-1;right:-36px;bottom:-30px;width:200px;height:320px;border-radius:100px 100px 0 0;background:linear-gradient(165deg,#a3173d,#5c0a22);opacity:.5;filter:blur(1.5px)}
+@media(prefers-color-scheme:dark){body::before{background:radial-gradient(70% 45% at 0% 0%,rgba(110,140,230,.35),transparent 70%),radial-gradient(80% 50% at 100% 25%,rgba(60,90,180,.4),transparent 70%),linear-gradient(170deg,#18224a,#121a36 60%,#0d1228)}body::after{opacity:.38}}
+h1{font-size:27px;font-weight:700;letter-spacing:-.3px;color:var(--tx)}
+h1::after{content:"";display:inline-block;width:20px;height:20px;margin-inline-start:8px;vertical-align:-2px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M12%203C11%208%208.5%2012%207.5%2014M12%203C13%208%2015.5%2012%2016.5%2013.5%27%20stroke%3D%27%235a0a20%27%20stroke-width%3D%271.3%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M12%203C14%201%2017.5%201.4%2018.8%203C16.6%204.4%2013.8%204.4%2012%203Z%27%20fill%3D%27%237f9fd0%27%2F%3E%3Ccircle%20cx%3D%277%27%20cy%3D%2717%27%20r%3D%274.8%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%2717%27%20cy%3D%2716.5%27%20r%3D%274.4%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%275.4%27%20cy%3D%2715.4%27%20r%3D%271.2%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3Ccircle%20cx%3D%2715.5%27%20cy%3D%2715%27%20r%3D%271.1%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+.by{color:var(--mu)}
+h2{font-size:15px;font-weight:600;color:var(--tx);letter-spacing:0}
+.card{border-radius:28px;background:var(--g);border:1px solid var(--gl);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);box-shadow:inset 0 1px 0 var(--gl),0 14px 34px -16px var(--sh)}
+.hero{position:relative;padding:54px 18px 26px;background:linear-gradient(180deg,var(--gl),var(--g))}
+.ch{position:absolute;top:20px;left:50%;width:26px;height:26px;transform:translateX(-50%)}
+.ring{position:relative;background:none;width:208px;height:208px}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--pk) calc(var(--p)*1%),var(--bd) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px))}
+.ring .in{width:184px;height:184px;background:var(--g);border:1px solid var(--gl);box-shadow:inset 0 1px 0 var(--gl),0 10px 26px -14px var(--sh)}
+.big{font-size:56px;font-weight:300;letter-spacing:-1px;color:var(--tx)}
+.pd{background:var(--wine);color:#fff}
+.ov{color:var(--card)}
+.btn{background:var(--wine);color:#fff;border-radius:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 22px -12px var(--pk)}
+.btn.alt{background:var(--g);border:1px solid var(--gl);color:var(--tx);box-shadow:inset 0 1px 0 var(--gl)}
+input[type=text],input[type=number],input[type=search],select,.dpb{background:var(--g);border:1px solid var(--gl);border-radius:16px;box-shadow:inset 0 1px 2px rgba(36,56,120,.12)}
+.chip{background:var(--g);border:1px solid var(--gl);border-radius:999px}
+.chip.on{background:var(--wine);color:#fff;border-color:transparent}
+.seg{background:var(--g);border:1px solid var(--gl);border-radius:16px}
+.seg button{border-radius:13px}
+.seg button.on{background:var(--gl);color:var(--tx);box-shadow:0 2px 8px -2px var(--sh)}
+.warn,.tip{background:var(--g);border:1px solid var(--gl)}
+.tabs{left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);padding:6px;border:1px solid var(--gl);border-radius:34px;background:var(--g);-webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);box-shadow:inset 0 1px 0 var(--gl),0 18px 40px -16px var(--sh)}
+.tabs button{border-radius:28px;padding:7px 0;color:var(--mu)}
+.tabs button.on{color:var(--pk);background:var(--gl);box-shadow:0 2px 10px -4px var(--sh)}
+.tabs button.on::after{display:none}
+.tabs svg{width:24px;height:24px;fill:currentColor;stroke:none}
+.card ul{list-style-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M12%203C11%208%208.5%2012%207.5%2014M12%203C13%208%2015.5%2012%2016.5%2013.5%27%20stroke%3D%27%235a0a20%27%20stroke-width%3D%271.3%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M12%203C14%201%2017.5%201.4%2018.8%203C16.6%204.4%2013.8%204.4%2012%203Z%27%20fill%3D%27%237f9fd0%27%2F%3E%3Ccircle%20cx%3D%277%27%20cy%3D%2717%27%20r%3D%274.8%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%2717%27%20cy%3D%2716.5%27%20r%3D%274.4%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%275.4%27%20cy%3D%2715.4%27%20r%3D%271.2%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3Ccircle%20cx%3D%2715.5%27%20cy%3D%2715%27%20r%3D%271.1%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3C%2Fsvg%3E")}
+.sheet{background:rgba(20,30,70,.35)}
+.sb{background:color-mix(in srgb,var(--card) 72%,transparent);-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);border:1px solid var(--gl);border-bottom:0;border-radius:32px 32px 0 0}
+
+/* ---- fixes ---- */
+:root{--g2:rgba(255,255,255,.64)}
+@media(prefers-color-scheme:dark){:root{--g2:rgba(255,255,255,.13)}}
+body::after{opacity:.3;filter:none}
+@media(prefers-color-scheme:dark){body::after{opacity:.26}}
+#t-cal .card,#t-hist .card,#t-set .card{background:var(--g2)}
+.sb{background:color-mix(in srgb,var(--card) 86%,transparent)}
+.tl{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.tq{border:1px solid var(--gl);background:var(--g);border-radius:18px;overflow:hidden}
+.tp{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;border:0;background:none;padding:13px 16px;font-size:14px;font-weight:500;text-align:right;color:var(--tx)}
+.tp::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid var(--mu);border-bottom:2px solid var(--mu);transform:rotate(45deg) translateY(-2px);transition:transform .25s}
+.tq.open .tp{color:var(--pk)}
+.tq.open .tp::after{transform:rotate(-135deg) translateY(-2px);border-color:var(--pk)}
+.tw{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.tq.open .tw{grid-template-rows:1fr}
+.tw>.ans{overflow:hidden;min-height:0;padding:0 16px;font-size:13.5px;line-height:2;color:var(--mu)}
+.tq.open .tw>.ans{padding:0 16px 14px}
+.x{min-width:36px;height:36px;padding:0;border-radius:50%;display:inline-grid;place-items:center;font-size:19px;background:var(--g);border:1px solid var(--gl)}
+.row>.x{flex:0 0 36px}
+.row>b{font-weight:600}
+.grid{gap:6px 4px}
+.w{font-size:11.5px}
+.c{font-size:14px;border-radius:50%;min-width:0}
+.pp{box-shadow:none;border:1.5px dashed var(--pk);color:var(--rt)}
+.fz{background:color-mix(in srgb,var(--gr) 26%,transparent);color:var(--pu)}
+.ov{background:var(--pu);color:var(--card)}
+.td{outline:2px solid var(--tx);outline-offset:-2px}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.seg button{font-size:13.5px}
+@media(prefers-reduced-motion:reduce){.tw,.tp::after{transition:none}}
+#toast{position:fixed;z-index:30;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:86vw;padding:12px 20px;border-radius:999px;background:var(--card);color:var(--tx);border:1px solid var(--gl);box-shadow:0 12px 30px -10px var(--sh);font-size:13.5px;transition:.25s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="hd"><h1>چرخه من</h1><span class="by">ساخته‌شده برای<br>جوانا خانم</span></div>
+<div class="sub" id="today"></div>
+
+<div class="tabs" id="tabs"><button data-t="home" class="on"><svg viewBox="0 0 24 24"><path d="M12 2.6c3.9 4.6 6.3 7.7 6.3 11a6.3 6.3 0 0 1-12.6 0c0-3.3 2.4-6.4 6.3-11z"/><path d="M8.6 14.2a3.6 3.6 0 0 0 3 3.4" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></svg><span>امروز</span></button><button data-t="cal"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="5" opacity=".38"/><path d="M3 10a5.5 5.5 0 0 1 5.5-5.5h7A5.5 5.5 0 0 1 21 10z"/><rect x="7.5" y="2.5" width="2.2" height="4.2" rx="1.1"/><rect x="14.3" y="2.5" width="2.2" height="4.2" rx="1.1"/></svg><span>تقویم</span></button><button data-t="hist"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" opacity=".38"/><rect x="11" y="6.8" width="2" height="10.4" rx="1"/><rect x="6.8" y="11" width="10.4" height="2" rx="1"/></svg><span>ثبت</span></button><button data-t="info"><svg viewBox="0 0 24 24"><path d="M3 6.5a2.7 2.7 0 0 1 2.7-2.7H11v15.4H5.7A2.7 2.7 0 0 0 3 21.9z" opacity=".38"/><path d="M21 6.5a2.7 2.7 0 0 0-2.7-2.7H13v15.4h5.3a2.7 2.7 0 0 1 2.7 2.7z"/></svg><span>راهنما</span></button><button data-t="set"><svg viewBox="0 0 24 24"><rect x="3" y="4.9" width="18" height="2.4" rx="1.2" opacity=".38"/><rect x="3" y="10.8" width="18" height="2.4" rx="1.2" opacity=".38"/><rect x="3" y="16.7" width="18" height="2.4" rx="1.2" opacity=".38"/><circle cx="15.5" cy="6.1" r="2.9"/><circle cx="8.5" cy="12" r="2.9"/><circle cx="14" cy="17.9" r="2.9"/></svg><span>تنظیمات</span></button></div>
+
+<section id="t-home"></section>
+
+<section id="t-hist" class="hid">
+  <div class="card">
+    <h2 id="ftitle">ثبت پریود جدید</h2>
+    <label>تاریخ شروع</label><div class="dp" id="d-start"></div>
+    <label>تاریخ پایان (اختیاری)</label><div class="dp" id="d-end"></div>
+    <button class="btn" id="add">ثبت</button><button class="btn alt hid" id="cancel">انصراف از ویرایش</button>
+  </div>
+  <div class="card"><h2>سابقه</h2><div id="list"></div></div>
+</section>
+
+<section id="t-cal" class="hid"><div class="card"><div class="seg" id="seg"></div><div id="calbox"></div>
+<div class="leg" style="margin-top:10px"><span><i class="dt" style="--c:var(--pk)"></i>پریود</span><span><i class="dt" style="--c:var(--pk)"></i>پیش‌بینی</span><span><i class="dt" style="--c:var(--pu)"></i>بازه باروری</span><span><i class="dt" style="--c:var(--pu)"></i>تخمک‌گذاری</span><span><i class="dt" style="--c:var(--gr)"></i>علائم ثبت‌شده</span></div></div><div class="card" id="fc"></div></section>
+
+<section id="t-info" class="hid"><div class="card"><h2>جست‌وجو در راهنما</h2><input type="search" id="q" placeholder="مثلاً: درد، دیرکرد، تغذیه، اندومتریوز…"><div id="kb"></div></div>
+  <div class="card"><h2>مراحل چرخه</h2>
+    <ul>
+      <li><b>قاعدگی (۳ تا ۷ روز):</b> ریزش پوشش رحم. انرژی معمولاً پایین است.</li>
+      <li><b>فولیکولار:</b> بعد از پریود؛ هورمون استروژن بالا می‌رود، انرژی و خلق‌وخو بهتر می‌شود.</li>
+      <li><b>تخمک‌گذاری:</b> حدود ۱۴ روز <u>قبل</u> از پریود بعدی (نه لزوماً روز ۱۴). ممکن است ترشح شفاف و کشسان یا درد خفیف یک‌طرفه داشته باشد.</li>
+      <li><b>لوتئال:</b> پروژسترون بالا می‌رود؛ در ۵ تا ۷ روز آخر علائم پیش از قاعدگی (PMS) شایع است.</li>
+    </ul>
+  </div>
+  <div class="card"><h2>عدد‌های نرمال</h2>
+    <ul>
+      <li>طول چرخه (از اول یک پریود تا اول بعدی): ۲۱ تا ۳۵ روز در بزرگسالان (۲۱ تا ۴۵ در نوجوانان). میانگین ۲۸.</li>
+      <li>مدت خونریزی: ۲ تا ۷ روز.</li>
+      <li>تغییر چرخه تا چند روز از ماهی به ماه دیگر طبیعی است. استرس، بیماری، سفر، تغییر وزن و ورزش سنگین می‌توانند پریود را جلو یا عقب بیندازند.</li>
+      <li>این برنامه فقط <b>پیش‌بینی</b> می‌کند و روش پیشگیری از بارداری نیست.</li>
+    </ul>
+  </div>
+  <div class="card"><h2>علائم شایع</h2>
+    <ul>
+      <li>گرفتگی و درد زیرشکم، کمردرد</li>
+      <li>نفخ، حساس شدن سینه‌ها، جوش</li>
+      <li>تغییر خلق، زودرنجی، خستگی، هوس غذا</li>
+      <li>سردرد، تغییر خواب</li>
+    </ul>
+  </div>
+  <div class="card"><h2>چه کمکی می‌کند؟</h2>
+    <ul>
+      <li>کیسه آب گرم روی شکم یا کمر</li>
+      <li>پیاده‌روی سبک و حرکات کششی</li>
+      <li>نوشیدن آب و مایعات گرم، کم کردن نمک و کافئین</li>
+      <li>غذاهای دارای آهن (گوشت قرمز، عدس، اسفناج) در روزهای خونریزی</li>
+      <li>خواب کافی؛ مسکن‌هایی مثل ایبوپروفن با نظر پزشک یا طبق دستور بسته‌بندی</li>
+      <li>نوار بهداشتی را هر ۴ تا ۶ ساعت و تامپون را حداکثر ۸ ساعت عوض کنید.</li>
+    </ul>
+  </div>
+  <div class="card"><h2>کی باید به پزشک مراجعه کرد؟</h2>
+    <ul>
+      <li>پریود بیش از ۳ ماه نیامده (در صورت عدم بارداری)</li>
+      <li>چرخه کمتر از ۲۱ یا بیشتر از ۳۵ روز، یا خیلی نامنظم</li>
+      <li>خونریزی بیش از ۷ روز</li>
+      <li>خیس شدن نوار هر ساعت برای چند ساعت پشت‌سرهم، یا لخته‌های بزرگ</li>
+      <li>درد شدید که مانع کارهای روزمره می‌شود</li>
+      <li>خونریزی بین دو پریود یا بعد از رابطه</li>
+      <li>تب، سرگیجه شدید یا ضعف همراه با خونریزی</li>
+    </ul>
+    <div class="warn">این اطلاعات عمومی است و جای مشورت پزشکی را نمی‌گیرد.</div>
+  </div>
+<div class="card"><h2>منابع</h2><div class="sub">محتوای عمومی این برنامه بر اساس راهنمای این مراجع تنظیم شده است:</div>
+<ul><li>ACOG — acog.org</li><li>NHS — nhs.uk</li><li>Mayo Clinic — mayoclinic.org</li><li>Cleveland Clinic — my.clevelandclinic.org</li><li>Office on Women’s Health — womenshealth.gov</li><li>WHO — who.int</li></ul>
+<div class="warn">این برنامه جایگزین ویزیت پزشک نیست. در موارد اورژانسی مثل خونریزی شدید یا درد ناگهانی و شدید، فوراً به مراکز درمانی مراجعه کنید.</div></div></section>
+
+<section id="t-set" class="hid">
+  <div class="card"><h2>تنظیمات</h2>
+    <label>طول چرخه پیش‌فرض (روز)</label><input type="number" id="s-cycle" min="21" max="45">
+    <label>مدت پریود پیش‌فرض (روز)</label><input type="number" id="s-len" min="2" max="10">
+    <label>یادآوری چند روز قبل از پریود</label><input type="number" id="s-rem" min="1" max="7">
+    <button class="btn" id="save">ذخیره</button>
+    <div class="sub" style="margin-top:8px">بعد از ثبت حداقل دو پریود، برنامه خودش میانگین واقعی چرخه را حساب می‌کند.</div>
+  </div>
+  <div class="card"><h2>یادآوری در تقویم گوشی</h2>
+    <div class="sub">اعلان خودکار در وب‌اپ آیفون ممکن نیست؛ برای اینکه گوشی خودش یادآوری کند، پیش‌بینی ۶ ماه آینده را به تقویم اضافه کنید.</div>
+    <button class="btn alt" id="ics">افزودن به تقویم (فایل ICS)</button>
+  </div>
+  <div class="card"><h2>پاک کردن اطلاعات</h2>
+    <button class="btn alt" id="wipe">حذف همه داده‌ها</button>
+    <div class="sub" style="margin-top:8px">داده‌ها فقط روی همین گوشی ذخیره می‌شوند و جایی ارسال نمی‌شوند.</div>
+  </div>
+</section>
+
+<script>
+const KEY='cycle_v1';
+let S={periods:[],cycle:28,len:5,rem:2};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const P=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c,12)};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const diff=(a,b)=>Math.round((a-b)/864e5);
+const now=()=>{const d=new Date();d.setHours(12,0,0,0);return d};
+const fmt=(d,w)=>new Intl.DateTimeFormat('fa-IR-u-ca-'+(S.cal==='g'?'gregory':'persian'),{weekday:w?'long':undefined,day:'numeric',month:'long',year:'numeric'}).format(d);
+const fa=n=>new Intl.NumberFormat('fa-IR').format(n);
+
+function stats(){
+  const ps=[...S.periods].sort((a,b)=>a.start<b.start?-1:1);
+  const gaps=[];
+  for(let i=1;i<ps.length;i++){const g=diff(P(ps[i].start),P(ps[i-1].start));if(g>=18&&g<=60)gaps.push(g)}
+  const g6=gaps.slice(-6);
+  const cycle=g6.length?Math.round(g6.reduce((a,b)=>a+b,0)/g6.length):S.cycle;
+  const lens=ps.filter(p=>p.end).map(p=>diff(P(p.end),P(p.start))+1).filter(n=>n>=1&&n<=12).slice(-6);
+  const len=lens.length?Math.round(lens.reduce((a,b)=>a+b,0)/lens.length):S.len;
+  return{ps,cycle,len,auto:g6.length>0};
+}
+
+function render(){
+  const t=now();$('today').textContent=fmt(t,true);
+  const st=stats(),h=$('t-home');
+  if(!st.ps.length){
+    h.innerHTML='<div class="card hero"><div class="lbl" style="margin-top:8px">هنوز پریودی ثبت نشده.<br>از تب «تاریخچه» تاریخ شروع آخرین پریود را وارد کنید.</div></div>';
+  }else{
+    const last=P(st.ps[st.ps.length-1].start),c=st.cycle;
+    let next=add(last,c),left=diff(next,t);
+    const day=diff(t,last)+1,ov=c-14;
+    const ovD=add(last,ov-1),fS=add(last,ov-6),fE=add(last,ov);
+    let phase,cls,tips;
+    if(day<=st.len){phase='قاعدگی';cls='p-red';tips=['استراحت و مایعات گرم','کیسه آب گرم برای درد','غذاهای دارای آهن','خودت را تحت فشار نگذار']}
+    else if(day<ov-5){phase='فولیکولار (انرژی در حال بالا رفتن)';cls='p-gr';tips=['زمان خوبی برای ورزش و کارهای سنگین‌تر','پوست و خلق معمولاً بهتر است']}
+    else if(day<=ov+1){phase='بازه باروری / تخمک‌گذاری';cls='p-pu';tips=['احتمال بارداری در این روزها بیشترین است','ممکن است ترشح شفاف و انرژی بالا داشته باشد']}
+    else if(left<=5&&left>=0){phase='لوتئال (احتمال PMS)';cls='p-red';tips:['','']; tips=['زودرنجی، نفخ و خستگی ممکن است','کم کردن نمک و کافئین، خواب کافی','کمی مهربان‌تر باش با خودت و اطرافیان']}
+    else{phase='لوتئال';cls='p-gr';tips=['انرژی کم‌کم کمتر می‌شود','پیاده‌روی سبک و خواب خوب کمک می‌کند']}
+    let main,small;
+    if(day<=st.len&&day>=1&&left>0){main=fa(day);small='روز '+fa(day)+' پریود (حدود '+fa(Math.max(st.len-day,0))+' روز دیگر)'}
+    else if(left>0){main=fa(left);small='روز تا پریود بعدی'}
+    else if(left===0){main='امروز';small='پریود بعدی طبق پیش‌بینی'}
+    else{main=fa(-left);small='روز تاخیر نسبت به پیش‌بینی'}
+    const rem=left>=0&&left<=S.rem?'<div class="warn">یادآوری: پریود تا '+(left?fa(left)+' روز دیگر':'امروز')+' شروع می‌شود. نوار بهداشتی و مسکن آماده باشد.</div>':'';
+    const late=left<-7?'<div class="warn">بیش از یک هفته تاخیر دارد. اگر احتمال بارداری هست تست بدهید و اگر چند ماه تکرار شد با پزشک مشورت کنید.</div>':'';
+    const pct=n=>(n/c*100).toFixed(1)+'%';
+    h.innerHTML=
+    '<div class="card hero">'+LILY+LILY2+'<div class="ring" style="--p:'+Math.min(100,Math.max(2,day/c*100)).toFixed(0)+'"><div class="in"><div class="big">'+main+'</div><div class="lbl">'+small+'</div></div></div>'+
+    '<div class="lbl">'+fmt(next,true)+'</div><span class="pill '+cls+'">'+phase+' · روز '+fa(Math.max(day,1))+' چرخه</span>'+rem+late+'</div>'+
+    '<div class="card"><h2>مراحل چرخه</h2><div class="bar">'+
+    '<i style="width:'+pct(st.len)+';background:var(--pk)"></i>'+
+    '<i style="width:'+pct(Math.max(ov-6-st.len,0))+';background:var(--gr)"></i>'+
+    '<i style="width:'+pct(6)+';background:var(--pu)"></i>'+
+    '<i style="width:'+pct(Math.max(c-ov,0))+';background:var(--bd)"></i></div>'+
+    '<div class="leg"><span><i class="dt" style="--c:var(--pk)"></i>پریود</span><span><i class="dt" style="--c:var(--gr)"></i>فولیکولار</span><span><i class="dt" style="--c:var(--pu)"></i>بازه باروری</span><span><i class="dt" style="--c:var(--bd)"></i>لوتئال</span></div></div>'+
+    '<div class="card"><h2>پیش‌بینی</h2>'+
+    '<div class="item"><span>پریود بعدی</span><b>'+fmt(next)+'</b></div>'+
+    '<div class="item"><span>تخمک‌گذاری (تقریبی)</span><b>'+fmt(ovD)+'</b></div>'+
+    '<div class="item"><span>بازه باروری</span><b>'+fmt(fS)+' تا '+fmt(fE)+'</b></div>'+
+    '<div class="item"><span>پریود بعد‌ترش</span><b>'+fmt(add(next,c))+'</b></div>'+
+    '<div class="item"><span>میانگین چرخه / مدت پریود</span><b>'+fa(c)+' / '+fa(st.len)+' روز '+(st.auto?'(محاسبه‌شده)':'(پیش‌فرض)')+'</b></div></div>'+
+    '<div class="card"><h2>امروز چه کنم؟</h2><ul>'+tips.map(x=>'<li>'+x+'</li>').join('')+'</ul></div>';
+  }
+  const L=$('list');
+  const ps=[...st.ps].reverse();
+  L.innerHTML=ps.length?ps.map(p=>'<div class="item"><span>'+fmt(P(p.start))+(p.end?' تا '+fmt(P(p.end)):'')+'</span><span style="white-space:nowrap"><button class="x" data-ed="'+p.start+'">✎</button><button class="x" data-del="'+p.start+'">✕</button></span></div>').join(''):'<div class="sub">موردی ثبت نشده.</div>';
+}
+
+$('add').onclick=()=>{const a=gd('d-start'),e=gd('d-end');
+  if(!a||a==='INVALID')return alert('تاریخ شروع معتبر وارد کنید');
+  if(e==='INVALID')return alert('تاریخ پایان معتبر نیست');
+  if(e&&e<a)return alert('تاریخ پایان نباید قبل از شروع باشد');
+  S.periods=S.periods.filter(p=>p.start!==a&&p.start!==editKey);
+  S.periods.push({start:a,end:e||null});save();resetForm();render();tab('home')};
+$('list').onclick=e=>{const x=e.target.closest('[data-del]');if(!x)return;const d=x.dataset.del;askConfirm('این پریود از سابقه حذف شود؟','حذف',()=>{S.periods=S.periods.filter(p=>p.start!==d);save();render()})};
+
+function fillSet(){$('s-cycle').value=S.cycle;$('s-len').value=S.len;$('s-rem').value=S.rem}
+$('save').onclick=()=>{
+  const c=+$('s-cycle').value,l=+$('s-len').value,r=+$('s-rem').value;
+  if(c<21||c>45||l<2||l>10||r<1||r>7)return alert('مقادیر معتبر وارد کنید');
+  S.cycle=c;S.len=l;S.rem=r;save();render();alert('ذخیره شد ✅');
+};
+$('wipe').onclick=()=>{askConfirm('همه داده‌ها (پریودها و علائم ثبت‌شده) برای همیشه پاک شود؟','پاک کردن',()=>{S.periods=[];S.log={};save();render();drawCal();toast('داده‌ها پاک شد')})};
+
+$('ics').onclick=()=>{
+  const st=stats();if(!st.ps.length)return alert('ابتدا یک پریود ثبت کنید');
+  const last=P(st.ps[st.ps.length-1].start),ymd=d=>iso(d).replace(/-/g,'');
+  let o='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//cycle//FA\r\nCALSCALE:GREGORIAN\r\n';
+  for(let i=1;i<=6;i++){
+    const d=add(last,st.cycle*i),ov=add(d,-14);
+    o+='BEGIN:VEVENT\r\nUID:p'+ymd(d)+'@cycle\r\nDTSTAMP:'+ymd(now())+'T090000Z\r\nDTSTART;VALUE=DATE:'+ymd(d)+'\r\nDTEND;VALUE=DATE:'+ymd(add(d,1))+'\r\nSUMMARY:پریود (پیش‌بینی)\r\nDESCRIPTION:آماده باش؛ نوار یا تامپون و مسکن و کیسه آب گرم همراهت باشد. آهن بخور و نمک و کافئین را کم کن. گرما و استراحت برای کرامپ.\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:پریود '+S.rem+' روز دیگر\r\nTRIGGER:-P'+S.rem+'D\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:امروز پریود شروع می‌شود\r\nTRIGGER:PT8H\r\nEND:VALARM\r\nEND:VEVENT\r\n';
+    o+='BEGIN:VEVENT\r\nUID:o'+ymd(ov)+'@cycle\r\nDTSTAMP:'+ymd(now())+'T090000Z\r\nDTSTART;VALUE=DATE:'+ymd(ov)+'\r\nDTEND;VALUE=DATE:'+ymd(add(ov,1))+'\r\nSUMMARY:تخمک‌گذاری (تقریبی)\r\nEND:VEVENT\r\n';
+  }
+  o+='END:VCALENDAR';
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([o],{type:'text/calendar'}));a.download='period.ics';
+  document.body.appendChild(a);a.click();a.remove();
+};
+
+function tab(n){
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===n));
+  ['home','cal','hist','info','set'].forEach(x=>$('t-'+x).classList.toggle('hid',x!==n));
+  window.scrollTo(0,0);
+}
+$('tabs').onclick=e=>{const b=e.target.closest('button');if(b)tab(b.dataset.t)};
+
+S.log=S.log||{};S.cal=S.cal||'j';
+const CA=()=>S.cal==='g'?'gregory':'persian';
+const cpf={};
+const part=(d,c)=>{const f=cpf[c]=cpf[c]||new Intl.DateTimeFormat('en-US-u-ca-'+c,{year:'numeric',month:'numeric',day:'numeric'});const o={};f.formatToParts(d).forEach(p=>{if(p.type!=='literal'&&p.type!=='era')o[p.type[0]]=+String(p.value).replace(/\D/g,'')});return o};
+const jp=d=>part(d,'persian'),cp=d=>part(d,CA());
+const fy=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
+function dp(id,opt){$(id).innerHTML='<button type="button" class="dpb" data-dp="'+id+'" data-o="'+(opt?1:'')+'"></button>';sd(id,'')}
+const gd=id=>$(id).firstChild.dataset.v||'';
+const sd=(id,v)=>{const b=$(id).firstChild;b.dataset.v=v||'';b.textContent=v?fmt(P(v),true):(b.dataset.o?'بدون تاریخ پایان (اختیاری)':'انتخاب تاریخ')};
+const sh=document.createElement('div');sh.id='sheet';sh.className='sheet hid';
+sh.innerHTML='<div class="sb"><div class="sh"></div><div id="sg"></div><div class="row"><button class="btn alt" id="s-clr" type="button">پاک کردن</button><button class="btn alt" id="s-td" type="button">امروز</button></div></div>';
+document.body.appendChild(sh);
+let shId=null,shRef=now();
+function drawSh(){let f=new Date(shRef);for(let i=0;i<32&&cp(f).d>1;i++)f=add(f,-1);shRef=f;const m=cp(f).m,sel=gd(shId),b=(n,t)=>'<button class="x" data-sm="'+n+'" type="button">'+t+'</button>';
+  let h='<div class="row" style="align-items:center;text-align:center">'+b(-12,'»')+b(-1,'›')+'<b style="flex:3">'+new Intl.DateTimeFormat('fa-IR-u-ca-'+CA(),{month:'long',year:'numeric'}).format(f)+'</b>'+b(1,'‹')+b(12,'«')+'</div><div class="grid">';
+  'ش ی د س چ پ ج'.split(' ').forEach(w=>h+='<span class="w">'+w+'</span>');
+  for(let i=(f.getDay()+1)%7;i>0;i--)h+='<span></span>';
+  for(let x=f;cp(x).m===m;x=add(x,1)){const k=iso(x);h+='<span class="c'+(k===sel?' pd':'')+(+x===+now()?' td':'')+'" data-pick="'+k+'">'+fa(cp(x).d)+'</span>'}
+  $('sg').innerHTML=h+'</div>'}
+function shiftSh(n){let f=shRef;for(let i=0;i<Math.abs(n);i++){f=n<0?add(f,-1):add(f,32);for(let j=0;j<32&&cp(f).d>1;j++)f=add(f,-1)}shRef=f;drawSh()}
+document.addEventListener('click',e=>{const t=e.target,d=t.dataset||{},cl=()=>sh.classList.add('hid');
+  if(d.dp){shId=d.dp;const v=gd(shId);shRef=v?P(v):now();$('s-clr').classList.toggle('hid',!d.o);drawSh();sh.classList.remove('hid')}
+  else if(d.sm)shiftSh(+d.sm);
+  else if(d.pick){sd(shId,d.pick);cl()}
+  else if(t===sh)cl();
+  if(t.id==='s-clr'){sd(shId,'');cl()}
+  if(t.id==='s-td'){sd(shId,iso(now()));cl()}});
+let editKey=null,logD=now(),topicSel='',calRef=now(),calF=now();
+const resetForm=()=>{editKey=null;sd('d-start',iso(now()));sd('d-end','');$('ftitle').textContent='ثبت پریود جدید';$('add').textContent='ثبت';$('cancel').classList.add('hid')};
+$('cancel').onclick=resetForm;
+
+function drawCal(){
+  let f=new Date(calRef);for(let i=0;i<32&&cp(f).d>1;i++)f=add(f,-1);calF=f;
+  const m=cp(f).m,st=stats(),ps=st.ps,last=ps.length?P(ps[ps.length-1].start):null;
+  const cls=x=>{if(!last)return'';
+    for(const p of ps){const a=P(p.start),e=p.end?P(p.end):add(a,st.len-1);if(x>=a&&x<=e)return'pd'}
+    for(let k=1;k<=14;k++){const a=add(last,st.cycle*k),o=add(a,-14);
+      if(x>=a&&x<=add(a,st.len-1))return'pp';if(+x===+o)return'ov';if(x>=add(o,-5)&&x<=add(o,1))return'fz'}
+    return''};
+  $('seg').innerHTML=[['j','شمسی'],['g','میلادی']].map(a=>'<button data-cal="'+a[0]+'"'+(S.cal===a[0]?' class="on"':'')+'>'+a[1]+'</button>').join('');
+  let h='<div class="row" style="align-items:center"><button class="x" data-cm="-1">›</button><b style="text-align:center">'+new Intl.DateTimeFormat('fa-IR-u-ca-'+CA(),{month:'long',year:'numeric'}).format(f)+'</b><button class="x" data-cm="1" style="text-align:left">‹</button></div><div class="grid">';
+  'ش ی د س چ پ ج'.split(' ').forEach(w=>h+='<span class="w">'+w+'</span>');
+  for(let i=(f.getDay()+1)%7;i>0;i--)h+='<span></span>';
+  for(let x=f;cp(x).m===m;x=add(x,1))h+='<span class="c '+cls(x)+(S.log[iso(x)]?' lg':'')+(+x===+now()?' td':'')+'">'+fa(cp(x).d)+'</span>';
+  $('calbox').innerHTML=h+'</div>';
+}
+
+const GR=[['درد',['درد شکم','کمردرد','سردرد','حساسیت سینه']],['بدن',['نفخ','تهوع','خستگی','سرگیجه','بی‌خوابی','جوش','هوس غذا','ترشح','لخته']],['خلق',['زودرنجی','اضطراب','غمگینی','آرام','پرانرژی']]];
+const FL=['لکه‌بینی','کم','متوسط','زیاد'];
+const ADV={
+'لکه‌بینی':'لکه‌بینی اول یا آخر پریود طبیعی است. اگر وسط چرخه یا بعد از رابطه تکرار شد پزشک ببیند.',
+'کم':'خونریزی کم می‌تواند طبیعی باشد؛ اگر چند ماه پشت‌هم کم بود بررسی شود.',
+'زیاد':'اگر چند ساعت هر ساعت یک نوار خیس شد، یا ضعف و تپش قلب داری، فوراً پزشک. آهن (گوشت، عدس، اسفناج) با ویتامین C بخور.',
+'لخته':'لخته کوچک‌تر از یک سکه طبیعی است؛ لخته بزرگ یا مداوم باید بررسی شود.',
+'درد شکم':'کیسه آب گرم ۲۰ دقیقه، دوش گرم، کشش و مایعات گرم. مسکن ضدالتهاب (مثل ایبوپروفن) را با غذا و طبق دستور بسته‌بندی، با شروع درد بخور. اگر درد شدید است یا هر ماه بدتر می‌شود، پزشک (اندومتریوز و فیبروم محتمل‌اند).',
+'کمردرد':'گرما، کشش ملایم و خوابیدن با بالش زیر زانو. ماساژ سبک کمک می‌کند.',
+'سردرد':'آب بنوش، کافئین را کم کن و در جای تاریک استراحت کن. سردرد شدید و ماهانه را به پزشک بگو.',
+'حساسیت سینه':'سوتین راحت بدون سیم بپوش و نمک و کافئین را کم کن. توده یا ترشح غیرعادی را پزشک ببیند.',
+'نفخ':'نمک، نوشابه و غذای فرآوری‌شده را کم کن؛ چای نعنا یا رازیانه و پیاده‌روی سبک کمک می‌کند.',
+'تهوع':'وعده‌های کوچک، زنجبیل و پرهیز از غذای چرب. با ضعف، سرگیجه یا تب پزشک.',
+'خستگی':'خواب ۷ تا ۹ ساعت، پروتئین و آهن کافی. اگر دائمی است آزمایش فریتین و هموگلوبین بده.',
+'سرگیجه':'بنشین، آب و چیز شیرین بخور. اگر با خونریزی زیاد بود فوراً پزشک.',
+'بی‌خوابی':'اتاق خنک و تاریک، کافئین را عصر قطع کن، دوش گرم قبل خواب و موبایل را کنار بگذار.',
+'جوش':'دو بار در روز با شوینده ملایم بشور و دست نزن. جوش شدید یا دائمی را پزشک ببیند (PCOS).',
+'هوس غذا':'هوس طبیعی است؛ آجیل، میوه یا شکلات تلخ انتخاب خوبی است.',
+'ترشح':'ترشح شفاف و کشسان وسط چرخه یعنی تخمک‌گذاری. بوی بد، خارش یا رنگ زرد و سبز یعنی احتمال عفونت؛ پزشک.',
+'زودرنجی':'قبل پریود هورمون‌ها روی خلق اثر می‌گذارند. قدم بزن، کافئین را کم کن و به اطرافیان بگو.',
+'اضطراب':'تنفس عمیق، پیاده‌روی و خواب کافی کمک می‌کند. اگر شدید است یا بعد پریود هم می‌ماند، با پزشک صحبت کن.',
+'غمگینی':'غم قبل پریود شایع است. اگر شدید است یا از پریود فراتر می‌رود (PMDD یا افسردگی)، با روان‌پزشک یا پزشک صحبت کن.',
+'پرانرژی':'انرژی‌ات بالاست؛ وقت خوبی برای ورزش و کارهای سنگین.'};
+const TP={
+'پریودم دیر شده':'اگر رابطه داشته‌ای از روز اول تأخیر تست بارداری بده. استرس، تغییر وزن و بیماری هم دیرکرد می‌دهند. بیش از ۶ هفته تأخیر یا ۳ ماه نیامدن را پزشک ببیند.',
+'پریودم نامنظم است':'استرس، وزن، ورزش زیاد، تیروئید و PCOS شایع‌ترین علت‌اند. چرخه کمتر از ۲۱ یا بیشتر از ۳۵ روز یا نامنظمی چندماهه باید بررسی شود.',
+'دو بار در ماه پریود شدم':'ممکن است چرخه کوتاه یا لکه‌بینی تخمک‌گذاری باشد. اگر تکرار شد پزشک ببین.',
+'رنگ خون پریود':'قرمز روشن تا قهوه‌ای تیره طبیعی است. بوی بد، ترشح زرد یا سبز یا خارش یعنی عفونت. خون صورتی کم‌رنگ با ضعف شاید کم‌خونی باشد.',
+'تامپون و کاپ':'نوار هر ۴ تا ۶ ساعت و تامپون حداکثر هر ۸ ساعت عوض شود (خطر سندرم شوک سمی). کاپ تا ۱۲ ساعت. قبل از استفاده دست بشور.',
+'ورزش در پریود':'پیاده‌روی، یوگا و کشش درد را کم می‌کنند. اگر ضعف یا درد شدید داری سبک‌تر برو.',
+'رابطه و بارداری':'بارداری حین پریود کم‌احتمال است ولی ممکن، چون اسپرم تا ۵ روز زنده می‌ماند. این برنامه روش پیشگیری نیست.',
+'تغذیه':'آهن (گوشت قرمز، عدس، اسفناج) با ویتامین C، آب زیاد و منیزیم (آجیل، موز). نمک، قند و کافئین زیاد نفخ را بدتر می‌کند.',
+'PMS چیست؟':'علائم جسمی و روحی ۱ تا ۲ هفته قبل پریود. کم کردن نمک و کافئین، ورزش و خواب کافی کمک می‌کند. شکل شدیدش (PMDD) درمان دارد.',
+'PCOS':'پریود نامنظم، جوش، موی زیاد و افزایش وزن نشانه‌هایش است. با آزمایش هورمونی و سونوگرافی تشخیص داده و درمان می‌شود.',
+'عقب انداختن پریود':'فقط با تجویز پزشک و قرص هورمونی ممکن است؛ خودسرانه مصرف نکن.',
+'درد غیرطبیعی کی است؟':'دردی که با مسکن بهتر نمی‌شود، مانع کار می‌شود، هر ماه بدتر می‌شود یا با تب، خونریزی زیاد یا درد حین رابطه همراه است.'};
+function symCard(){
+  const k=iso(logD),L=S.log[k]||{s:[],f:'',n:''},tod=+logD===+now();
+  const ch=(a,x,on)=>'<button class="chip'+(on?' on':'')+'" data-'+a+'="'+x+'">'+x+'</button>';
+  let h='<div class="card"><div class="row" style="align-items:center"><button class="x" data-ld="-1" style="flex:0">›</button><h2 style="text-align:center;margin:0;flex:4">'+(tod?'امروز چه حسی داری؟':'ثبت حال روزهای قبل')+'</h2><button class="x" data-ld="1" style="flex:0"'+(tod?' disabled':'')+'>‹</button></div><div class="sub" style="text-align:center;margin:4px 0 0">'+fmt(logD,true)+'</div>';
+  h+='<div class="gl">میزان خونریزی</div>'+FL.map(x=>ch('fl',x,L.f===x)).join('');
+  GR.forEach(g=>h+='<div class="gl">'+g[0]+'</div>'+g[1].map(x=>ch('sy',x,L.s.includes(x))).join(''));
+  const adv=[...L.s,L.f].filter(x=>ADV[x]);
+  if(adv.length)h+='<div class="tip">'+adv.map(x=>'<p><b>'+x+':</b> '+ADV[x]+'</p>').join('')+'</div>';
+  h+='<div class="gl">یادداشت</div><input type="text" id="note" placeholder="هر چیزی که می‌خواهی یادت بماند">';
+  h+='<div class="gl">درباره‌ی چی می‌خوای بدونی؟</div><div class="tl">'+Object.keys(TP).map(x=>'<div class="tq'+(x===topicSel?' open':'')+'"><button type="button" class="tp" data-tp="'+x+'"><span>'+x+'</span></button><div class="tw"><div class="ans">'+TP[x]+'</div></div></div>').join('')+'</div></div>';
+  return h;
+}
+document.addEventListener('click',e=>{const d=e.target.dataset;if(!d)return;const k=iso(logD);
+  if(d.sy||d.fl){const L=S.log[k]=S.log[k]||{s:[],f:'',n:''};
+    if(d.sy)L.s=L.s.includes(d.sy)?L.s.filter(x=>x!==d.sy):[...L.s,d.sy];else L.f=L.f===d.fl?'':d.fl;save();render()}
+  if(d.ld){const n=add(logD,+d.ld);if(n<=now()){logD=n;render()}}
+  if(d.cm){calRef=add(calF,d.cm<0?-1:32);drawCal()}
+  if(d.cal){const a=gd('d-start'),b=gd('d-end');S.cal=d.cal;save();dp('d-start');dp('d-end',1);sd('d-start',a&&a!=='INVALID'?a:iso(now()));sd('d-end',b&&b!=='INVALID'?b:'');calRef=now();render()}
+  if(d.ed){const p=S.periods.find(x=>x.start===d.ed);if(p){editKey=p.start;sd('d-start',p.start);sd('d-end',p.end||'');$('ftitle').textContent='ویرایش پریود';$('add').textContent='ذخیره تغییرات';$('cancel').classList.remove('hid');window.scrollTo(0,0)}}});
+document.addEventListener('change',e=>{const t=e.target;
+  if(t.id==='topic'){topicSel=t.value;const a=$('ta');a.textContent=TP[topicSel]||'';a.classList.toggle('hid',!topicSel)}
+  if(t.id==='note'){const k=iso(logD),L=S.log[k]=S.log[k]||{s:[],f:'',n:''};L.n=t.value;save();drawCal()}});
+const LILY='<svg xmlns="http://www.w3.org/2000/svg" class="ch" viewBox="0 0 24 24"><path d="M12 3C11 8 8.5 12 7.5 14M12 3C13 8 15.5 12 16.5 13.5" stroke="#5a0a20" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M12 3C14 1 17.5 1.4 18.8 3C16.6 4.4 13.8 4.4 12 3Z" fill="#7f9fd0"/><circle cx="7" cy="17" r="4.8" fill="#a31535"/><circle cx="17" cy="16.5" r="4.4" fill="#a31535"/><circle cx="5.4" cy="15.4" r="1.2" fill="#fff" opacity=".5"/><circle cx="15.5" cy="15" r="1.1" fill="#fff" opacity=".5"/></svg>',LILY2='';
+const DI={1:'شروع خونریزی؛ کرامپ، خستگی و کمردرد بیشتر از بقیه روزهاست. گرما، استراحت و مایعات گرم کمک می‌کند.',2:'معمولاً پرخون‌ترین روز؛ نوار را مرتب عوض کن، آهن بخور و ورزش سنگین نکن.',3:'خونریزی کم‌کم کمتر و درد بهتر می‌شود؛ انرژی برمی‌گردد.',4:'خونریزی سبک‌تر است؛ پیاده‌روی و یوگای سبک مناسب است.',5:'پریود در حال پایان است؛ پوست و خلق بهتر می‌شود.',6:'لکه‌بینی پایانی یا تمام شدن پریود. اگر هنوز زیاد است و از ۷ روز گذشت، پزشک.'};
+function personal(d,all){const ps=stats().ps.map(p=>p.start),cur=ps[ps.length-1],cy=new Set(),c={};
+  for(const k in S.log){let s=null;for(const a of ps)if(a<=k)s=a;if(!s||(!all&&s===cur)||diff(P(k),P(s))+1!==d)continue;const L=S.log[k],arr=[...L.s,...(L.f?[L.f]:[])];if(!arr.length)continue;cy.add(s);arr.forEach(x=>(c[x]=c[x]||new Set()).add(s))}
+  const top=Object.entries(c).sort((a,b)=>b[1].size-a[1].size).slice(0,4);
+  return top.length?'بر اساس ثبت‌های قبلی خودت، روز '+fa(d)+' چرخه معمولاً: '+top.map(x=>x[0]+' ('+fa(x[1].size)+' از '+fa(cy.size)+' ماه)').join('، ')+'.':''}
+function notifCard(){const st=stats(),n=[];
+  if(!st.ps.length)n.push(['شروع کن','تاریخ شروع آخرین پریودت را در تب «ثبت» وارد کن تا پیش‌بینی‌ها و اعلان‌ها فعال شوند.']);
+  else{const last=P(st.ps[st.ps.length-1].start),c=st.cycle,t=now(),day=diff(t,last)+1,left=diff(add(last,c),t),ov=c-14;
+    if(left<0)n.push([fa(-left)+' روز تأخیر','اگر احتمال بارداری هست تست بده. استرس، سفر و بیماری هم دیرکرد می‌دهند. بیش از ۶ هفته تأخیر یا ۳ ماه نیامدن را پزشک ببیند.']);
+    else if(left<=S.rem)n.push(['پریود '+(left?fa(left)+' روز دیگر':'امروز')+' شروع می‌شود','کیف را آماده کن: نوار یا تامپون، مسکن، کیسه آب گرم و خوراکی دلخواه. آهن بخور، نمک و کافئین را کم کن و خوب بخواب. ممکن است نفخ، زودرنجی، خستگی و حساسیت سینه داشته باشی. '+personal(1,true)]);
+    else if(left<=5)n.push(['دوره PMS؛ '+fa(left)+' روز تا پریود','نفخ، تغییر خلق، هوس غذا و خستگی شایع است. نمک و کافئین کم، ورزش سبک، خواب کافی و منیزیم (آجیل، موز) کمک می‌کند.']);
+    if(day>=1&&day<=st.len&&left>0){n.push(['روز '+fa(day)+' پریود',(DI[day]||DI[6])+' '+personal(day)]);if(day<st.len)n.push(['فردا، روز '+fa(day+1),(DI[day+1]||DI[6])+' '+personal(day+1)])}
+    else if(day>st.len&&day<ov-5)n.push(['فاز فولیکولار','استروژن بالا می‌رود؛ انرژی، تمرکز و پوست بهتر است. وقت خوبی برای ورزش قوی‌تر و کارهای سخت.']);
+    else if(day>=ov-5&&day<=ov+1)n.push([day===ov?'امروز احتمالاً روز تخمک‌گذاری است':'بازه باروری','ترشح شفاف و کشسان، انرژی و میل بالاتر و درد خفیف یک‌طرفه طبیعی است. احتمال بارداری در این روزها بیشتر است.']);
+    else if(day>ov+1&&left>5)n.push(['فاز لوتئال','پروژسترون بالاست؛ انرژی کم‌کم کمتر می‌شود. پیلاتس، پیاده‌روی و خواب کافی مناسب است.']);}
+  n.push(['هشدار روی صفحه قفل','این وب‌اپ در آیفون نمی‌تواند خودش اعلان بفرستد. در تنظیمات گزینه «افزودن به تقویم» را بزن تا گوشی خودش با همین توضیحات هشدار بدهد.']);
+  return '<div class="card"><h2>اعلان‌های امروز</h2>'+n.map(x=>'<div class="nt"><b>'+x[0]+'</b><p>'+x[1]+'</p></div>').join('')+'</div>'}
+function drawFc(){const st=stats();if(!st.ps.length){$('fc').innerHTML='<h2>پیش‌بینی روز به روز</h2><div class="sub">بعد از ثبت اولین پریود فعال می‌شود.</div>';return}
+  const nx=add(P(st.ps[st.ps.length-1].start),st.cycle);let h='<h2>پریود بعدی، روز به روز</h2><div class="sub">هرچه بیشتر روزها را ثبت کنی، پیش‌بینی شخصی‌تر می‌شود.</div>';
+  for(let d=1;d<=st.len;d++)h+='<details><summary>روز '+fa(d)+' — '+fmt(add(nx,d-1))+'</summary><p>'+(DI[d]||DI[6])+(personal(d,true)?'<br><b>'+personal(d,true)+'</b>':'')+'</p></details>';
+  $('fc').innerHTML=h}
+const NEW=[
+['چرخه','چهار فاز چرخه','قاعدگی (روز ۱ تا ۵)؛ فولیکولار تا تخمک‌گذاری؛ تخمک‌گذاری حدود ۱۴ روز قبل از پریود بعدی؛ لوتئال با پروژسترون بالا و PMS در انتها.'],
+['چرخه','تخمک‌گذاری را چطور بفهمم؟','ترشح شفاف و کشسان مثل سفیده تخم‌مرغ، درد خفیف یک‌طرفه، افزایش میل و بالا رفتن جزئی دمای پایه بدن بعد از تخمک‌گذاری.'],
+['چرخه','طول چرخه چطور حساب می‌شود؟','از روز اول یک پریود تا روز قبل از پریود بعدی. چند روز تفاوت ماه به ماه طبیعی است.'],
+['اولین پریود','اولین پریود کی می‌آید؟','معمولاً بین ۹ تا ۱۶ سالگی. در سال‌های اول نامنظمی عادی است. اگر تا ۱۵ سالگی نیامد پزشک ببیند.'],
+['بیماری‌ها','اندومتریوز','رشد بافت شبیه رحم بیرون از رحم؛ درد شدید پریود، درد حین رابطه، خونریزی زیاد و گاهی ناباروری. با معاینه و سونوگرافی یا MRI تشخیص داده می‌شود و درمان دارد؛ درد شدید را عادی نکن.'],
+['بیماری‌ها','فیبروم رحمی','توده‌های خوش‌خیم رحم؛ خونریزی زیاد و طولانی، فشار روی لگن و تکرر ادرار. درمان دارد.'],
+['بیماری‌ها','پریود نیامدن (آمنوره)','بارداری، استرس، کاهش وزن زیاد، ورزش شدید، PCOS، تیروئید، پرولاکتین بالا یا یائسگی زودرس. بیش از ۳ ماه یعنی پزشک.'],
+['بیماری‌ها','خونریزی بین دو پریود','لکه‌بینی تخمک‌گذاری، قرص هورمونی، عفونت، پولیپ یا اختلال هورمونی. اگر تکرار شد بررسی شود.'],
+['قرص','قرص ضدبارداری و پریود','پریود را منظم و کم‌درد می‌کند؛ لکه‌بینی ماه‌های اول طبیعی است. بدون مشورت پزشک شروع یا قطع نکن.'],
+['تغذیه','غذاهای مفید در پریود','عدس، جگر، گوشت، اسفناج (آهن)؛ مرکبات (ویتامین C)؛ ماهی و گردو (امگا ۳)؛ موز و آجیل (منیزیم)؛ ماست (کلسیم)؛ زنجبیل و چای رازیانه برای درد.'],
+['تغذیه','چه چیزهایی بدتر می‌کند؟','نمک و قند زیاد، فست‌فود، کافئین و الکل، نفخ و درد و بی‌قراری را بیشتر می‌کنند.'],
+['ورزش','ورزش در هر مرحله','پریود: یوگا و پیاده‌روی. فولیکولار: قدرتی و کاردیو. تخمک‌گذاری: بیشترین انرژی. لوتئال: پیلاتس و ورزش ملایم.'],
+['سلامت روان','PMDD چیست؟','شکل شدید PMS با افسردگی، اضطراب یا خشم شدید قبل پریود که زندگی را مختل می‌کند. درمان دارد؛ با پزشک صحبت کن.'],
+['بهداشت','بهداشت دوران پریود','دست را قبل و بعد تعویض بشور، با شوینده ملایم فقط بیرون را بشور، لباس زیر نخی بپوش و هرگز داخل واژن اسپری یا دوش نکن.'],
+['یائسگی','پیش‌یائسگی','معمولاً از اواخر ۴۰ سالگی؛ چرخه نامنظم، گرگرفتگی و بدخوابی. ۱۲ ماه نیامدن پریود یعنی یائسگی.'],
+['کم‌خونی','نشانه‌های کم‌خونی','خستگی، رنگ‌پریدگی، تپش قلب، ریزش مو و تنگی نفس. آزمایش فریتین و هموگلوبین بده و آهن را با نظر پزشک مصرف کن.'],
+['خواب','خواب و پریود','قبل و حین پریود خواب سبک‌تر می‌شود؛ ۷ تا ۹ ساعت، اتاق خنک و کافئین کمتر در عصر.'],
+['اورژانس','کی باید فوراً اقدام کنم؟','درد ناگهانی و شدید لگن، تب بالا، بیهوشی یا خونریزی با تعویض نوار هر ساعت: فوراً اورژانس.']];
+const KB=[...NEW,...Object.entries(TP).map(a=>['پرسش‌ها',a[0],a[1]]),...Object.entries(ADV).map(a=>['علائم',a[0],a[1]])];
+function drawKB(q){q=(q||'').trim();const r=KB.filter(a=>!q||(a[0]+a[1]+a[2]).includes(q));$('kb').innerHTML=r.length?r.map(a=>'<details><summary><span><small>'+a[0]+'</small><br>'+a[1]+'</span></summary><p>'+a[2]+'</p></details>').join(''):'<div class="sub">چیزی پیدا نشد؛ کلمه دیگری امتحان کن.</div>'}
+document.addEventListener('input',e=>{if(e.target.id==='q')drawKB(e.target.value)});
+const _r=render;render=function(){_r();const h0=$('t-home');h0.firstElementChild.insertAdjacentHTML('afterend',notifCard());h0.insertAdjacentHTML('beforeend',symCard());drawFc();drawKB($('q').value);$('note').value=(S.log[iso(logD)]||{}).n||'';drawCal()};
+dp('d-start');dp('d-end',1);sd('d-start',iso(now()));
+fillSet();render();
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-tp]');if(!b)return;const q=b.parentNode,o=q.classList.toggle('open');topicSel=o?b.dataset.tp:'';document.querySelectorAll('.tq.open').forEach(x=>{if(x!==q)x.classList.remove('open')})});
+(()=>{const sb=sh.querySelector('.sb');let y0=null,dy=0,mv=false;
+const close=()=>{sh.classList.add('hid');sb.style.transform='';sb.style.transition=''};
+sb.addEventListener('touchstart',e=>{y0=e.touches[0].clientY;dy=0;mv=false;sb.style.transition='none'},{passive:true});
+sb.addEventListener('touchmove',e=>{if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy>6)mv=true;if(mv)sb.style.transform='translateY('+Math.max(0,dy)+'px)'},{passive:true});
+sb.addEventListener('touchend',e=>{if(y0===null)return;y0=null;sb.style.transition='transform .25s ease';if(mv&&dy>90){sb.style.transform='translateY(100%)';setTimeout(close,220)}else sb.style.transform='';if(mv)e.preventDefault()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sh.classList.contains('hid'))close()});
+new MutationObserver(()=>{if(sh.classList.contains('hid')){sb.style.transform='';sb.style.transition=''}}).observe(sh,{attributes:true,attributeFilter:['class']});})();
+
+let _tt;function toast(m){let e=$('toast');if(!e){e=document.createElement('div');e.id='toast';document.body.appendChild(e)}e.textContent=m;e.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>e.classList.remove('show'),2400)}
+window.alert=m=>toast(String(m));
+function askConfirm(msg,yes,fn){let c=$('cf');if(!c){c=document.createElement('div');c.id='cf';c.className='sheet hid';c.innerHTML='<div class="sb"><div class="sh"></div><p id="cf-m" style="text-align:center;font-weight:500;line-height:1.9;margin:10px 0 4px"></p><div class="row"><button class="btn alt" id="cf-n" type="button">انصراف</button><button class="btn" id="cf-y" type="button"></button></div></div>';document.body.appendChild(c);c.addEventListener('click',e=>{if(e.target===c||e.target.id==='cf-n')c.classList.add('hid')})}
+$('cf-m').textContent=msg;$('cf-y').textContent=yes;$('cf-y').onclick=()=>{c.classList.add('hid');fn()};c.classList.remove('hid')}
+</script>
+</body>
+</html>
