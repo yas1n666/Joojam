@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="چرخه">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#b5cbea" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121a36" media="(prefers-color-scheme: dark)">
+<title>چرخه من</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🍒</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><rect width=%27100%27 height=%27100%27 fill=%27%23b5cbea%27/><text y=%27.8em%27 x=%2712%27 font-size=%2775%27>🍒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#bcd0ea;--card:#eef4fc;--tx:#1a2340;--mu:#3f4d6d;--pk:#7e1230;--pk2:#f4d9e0;--gr:#5d82b8;--gr2:#dbe7f7;--pu:#2f4a8f;--pu2:#e0e9f8;--bd:rgba(255,255,255,.6);--rt:#7e1230;--g:rgba(255,255,255,.5);--gl:rgba(255,255,255,.72);--sh:rgba(36,56,120,.32);--wine:linear-gradient(180deg,#a3173d,#72102b)}
+@media(prefers-color-scheme:dark){:root{--bg:#121a36;--card:#1a2542;--tx:#eaf0fb;--mu:#a7b6d8;--pk:#d6395f;--pk2:#3b1c2f;--gr:#7fa4de;--gr2:#223458;--pu:#9db8f2;--pu2:#202c52;--bd:rgba(255,255,255,.16);--rt:#ff9bb4;--g:rgba(255,255,255,.09);--gl:rgba(255,255,255,.2);--sh:rgba(0,0,0,.5);--wine:linear-gradient(180deg,#e04a70,#b02850)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:"Vazirmatn",-apple-system,Tahoma,sans-serif;font-size:15px;line-height:1.6}
+body{padding:calc(env(safe-area-inset-top,0px) + 10px) 18px calc(env(safe-area-inset-bottom,0px) + 100px);max-width:480px;margin:0 auto}
+b,strong{font-weight:600}
+.hd{display:flex;justify-content:space-between;align-items:flex-end;margin:18px 0 6px}
+h1{font-size:28px;font-weight:600;margin:0;letter-spacing:-.5px}
+.by{font-size:10.5px;color:var(--mu);text-align:left;line-height:1.7;padding-bottom:6px}
+.sub{color:var(--mu);font-size:13px;margin:0 0 18px}
+h2{font-size:12.5px;font-weight:500;color:var(--mu);margin:0 0 12px;letter-spacing:.3px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:20px;margin-bottom:14px}
+.hero{text-align:center;padding:30px 18px 24px;background:linear-gradient(180deg,var(--pk2),var(--card) 65%)}
+.ring{width:208px;height:208px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--pk) calc(var(--p)*1%),var(--bd) 0)}
+.ring .in{width:188px;height:188px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px}
+.big{font-size:58px;font-weight:300;line-height:1.1;letter-spacing:-1px}
+.lbl{font-size:13px;color:var(--mu);line-height:1.6}
+.pill{display:inline-block;padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:500;margin-top:4px}
+.p-red{background:var(--pk2);color:var(--rt)}.p-gr,.p-pu{background:var(--gr2);color:var(--pu)}
+button,input,select{font:inherit;color:inherit}
+.btn{width:100%;padding:15px;border:0;border-radius:16px;background:var(--tx);color:var(--card);font-weight:500;font-size:15px;margin-top:12px}
+.btn.alt{background:transparent;border:1px solid var(--bd);color:var(--tx)}
+.btn:active{opacity:.75}
+input[type=text],input[type=number],input[type=search],select{width:100%;padding:13px 16px;border-radius:16px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14.5px;min-height:48px}
+label,.gl{font-size:12px;color:var(--mu);display:block;margin:14px 0 6px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.dpb{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--bd);background:var(--bg);font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
+.dpb::after{content:"▾";color:var(--mu)}
+.tabs{position:fixed;bottom:0;left:0;right:0;display:flex;padding:8px 6px calc(env(safe-area-inset-bottom,0px) + 8px);background:color-mix(in srgb,var(--card) 84%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid var(--bd);z-index:9}
+.tabs button{flex:1;border:0;background:none;color:var(--mu);font-size:10.5px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;position:relative}
+.tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tabs button *{pointer-events:none}
+.tabs button.on{color:var(--tx);font-weight:600}
+.tabs button.on::after{content:"";position:absolute;top:-9px;width:22px;height:3px;border-radius:2px;background:var(--pk)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--bd);font-size:13.5px}
+.item:last-child{border:0}.item b{font-weight:500;text-align:left}.item span{color:var(--mu)}
+.x{background:none;border:0;color:var(--mu);font-size:22px;padding:4px 10px}
+ul{margin:4px 0;padding-inline-start:20px;line-height:2;font-size:13.5px;color:var(--mu)}
+.warn{background:var(--pu2);border-radius:16px;padding:12px 16px;font-size:13px;line-height:1.9;margin-top:14px;text-align:right}
+.tip{background:var(--pu2);border-radius:16px;padding:14px 16px;font-size:13px;line-height:1.95;margin-top:14px}
+.tip b{color:var(--pu)}.tip p{margin:0 0 8px}.tip p:last-child{margin:0}
+.bar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:6px 0 12px}.bar i{display:block}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mu)}
+.dt{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-inline-end:6px}
+.hid{display:none}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-top:12px}
+.w{font-size:11px;color:var(--mu);padding-bottom:6px}
+.c{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:13.5px;position:relative}
+.c[data-pick]{cursor:pointer}
+.pd{background:var(--pk);color:#4a1822}
+.pp{box-shadow:inset 0 0 0 1.5px var(--pk);color:var(--rt)}
+.fz{background:var(--gr2);color:var(--pu)}
+.ov{background:var(--pu);color:var(--card)}
+.td{outline:1.5px solid var(--tx);outline-offset:1px}
+.lg::after{content:"";position:absolute;bottom:4px;width:4px;height:4px;border-radius:50%;background:var(--gr)}
+.chip{display:inline-block;margin:3px 2px;padding:8px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);font-size:13px}
+.chip.on{background:var(--tx);color:var(--card);border-color:var(--tx)}
+.seg{display:flex;background:var(--bg);border-radius:14px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;border:0;background:none;padding:9px;border-radius:11px;font-size:13px;color:var(--mu)}
+.seg button.on{background:var(--card);color:var(--tx);font-weight:500;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.nt{padding:14px 0;border-bottom:1px solid var(--bd)}.nt:last-child{border:0;padding-bottom:0}
+.nt b{font-size:14px;display:block}
+.nt p{margin:5px 0 0;font-size:13px;line-height:1.95;color:var(--mu)}
+details{border-bottom:1px solid var(--bd);padding:14px 0}details:last-child{border:0}
+summary{font-weight:500;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;line-height:1.7}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--mu);font-size:20px;line-height:1;font-weight:300}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 0;font-size:13.5px;line-height:2;color:var(--mu)}
+summary small{color:var(--rt);font-size:11px;font-weight:400}
+.sheet{position:fixed;inset:0;background:rgba(20,26,22,.4);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet.hid{display:none}
+.sb{width:100%;max-width:480px;background:var(--card);border-radius:28px 28px 0 0;padding:12px 18px calc(env(safe-area-inset-bottom,0px) + 18px);animation:up .25s ease}
+.sh{width:40px;height:4px;border-radius:2px;background:var(--bd);margin:0 auto 12px}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.dp .row{gap:6px}
+button:disabled{opacity:.25}
+
+/* ---- liquid glass: cornflower & cherry wine ---- */
+html{background:var(--bg);min-height:100%}
+body{background:transparent;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 118px)}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(70% 45% at 0% 0%,rgba(255,255,255,.75),transparent 70%),radial-gradient(80% 50% at 100% 25%,rgba(122,160,222,.55),transparent 70%),linear-gradient(170deg,#d6e4f7,#aac4e8 55%,#8eaedb)}
+body::after{content:"";position:fixed;z-index:-1;right:-36px;bottom:-30px;width:200px;height:320px;border-radius:100px 100px 0 0;background:linear-gradient(165deg,#a3173d,#5c0a22);opacity:.5;filter:blur(1.5px)}
+@media(prefers-color-scheme:dark){body::before{background:radial-gradient(70% 45% at 0% 0%,rgba(110,140,230,.35),transparent 70%),radial-gradient(80% 50% at 100% 25%,rgba(60,90,180,.4),transparent 70%),linear-gradient(170deg,#18224a,#121a36 60%,#0d1228)}body::after{opacity:.38}}
+h1{font-size:27px;font-weight:700;letter-spacing:-.3px;color:var(--tx)}
+h1::after{content:"";display:inline-block;width:20px;height:20px;margin-inline-start:8px;vertical-align:-2px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M12%203C11%208%208.5%2012%207.5%2014M12%203C13%208%2015.5%2012%2016.5%2013.5%27%20stroke%3D%27%235a0a20%27%20stroke-width%3D%271.3%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M12%203C14%201%2017.5%201.4%2018.8%203C16.6%204.4%2013.8%204.4%2012%203Z%27%20fill%3D%27%237f9fd0%27%2F%3E%3Ccircle%20cx%3D%277%27%20cy%3D%2717%27%20r%3D%274.8%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%2717%27%20cy%3D%2716.5%27%20r%3D%274.4%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%275.4%27%20cy%3D%2715.4%27%20r%3D%271.2%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3Ccircle%20cx%3D%2715.5%27%20cy%3D%2715%27%20r%3D%271.1%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+.by{color:var(--mu)}
+h2{font-size:15px;font-weight:600;color:var(--tx);letter-spacing:0}
+.card{border-radius:28px;background:var(--g);border:1px solid var(--gl);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);box-shadow:inset 0 1px 0 var(--gl),0 14px 34px -16px var(--sh)}
+.hero{position:relative;padding:54px 18px 26px;background:linear-gradient(180deg,var(--gl),var(--g))}
+.ch{position:absolute;top:20px;left:50%;width:26px;height:26px;transform:translateX(-50%)}
+.ring{position:relative;background:none;width:208px;height:208px}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--pk) calc(var(--p)*1%),var(--bd) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px))}
+.ring .in{width:184px;height:184px;background:var(--g);border:1px solid var(--gl);box-shadow:inset 0 1px 0 var(--gl),0 10px 26px -14px var(--sh)}
+.big{font-size:56px;font-weight:300;letter-spacing:-1px;color:var(--tx)}
+.pd{background:var(--wine);color:#fff}
+.ov{color:var(--card)}
+.btn{background:var(--wine);color:#fff;border-radius:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 22px -12px var(--pk)}
+.btn.alt{background:var(--g);border:1px solid var(--gl);color:var(--tx);box-shadow:inset 0 1px 0 var(--gl)}
+input[type=text],input[type=number],input[type=search],select,.dpb{background:var(--g);border:1px solid var(--gl);border-radius:16px;box-shadow:inset 0 1px 2px rgba(36,56,120,.12)}
+.chip{background:var(--g);border:1px solid var(--gl);border-radius:999px}
+.chip.on{background:var(--wine);color:#fff;border-color:transparent}
+.seg{background:var(--g);border:1px solid var(--gl);border-radius:16px}
+.seg button{border-radius:13px}
+.seg button.on{background:var(--gl);color:var(--tx);box-shadow:0 2px 8px -2px var(--sh)}
+.warn,.tip{background:var(--g);border:1px solid var(--gl)}
+.tabs{left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);padding:6px;border:1px solid var(--gl);border-radius:34px;background:var(--g);-webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);box-shadow:inset 0 1px 0 var(--gl),0 18px 40px -16px var(--sh)}
+.tabs button{border-radius:28px;padding:7px 0;color:var(--mu)}
+.tabs button.on{color:var(--pk);background:var(--gl);box-shadow:0 2px 10px -4px var(--sh)}
+.tabs button.on::after{display:none}
+.tabs svg{width:24px;height:24px;fill:currentColor;stroke:none}
+.card ul{list-style-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M12%203C11%208%208.5%2012%207.5%2014M12%203C13%208%2015.5%2012%2016.5%2013.5%27%20stroke%3D%27%235a0a20%27%20stroke-width%3D%271.3%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M12%203C14%201%2017.5%201.4%2018.8%203C16.6%204.4%2013.8%204.4%2012%203Z%27%20fill%3D%27%237f9fd0%27%2F%3E%3Ccircle%20cx%3D%277%27%20cy%3D%2717%27%20r%3D%274.8%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%2717%27%20cy%3D%2716.5%27%20r%3D%274.4%27%20fill%3D%27%23a31535%27%2F%3E%3Ccircle%20cx%3D%275.4%27%20cy%3D%2715.4%27%20r%3D%271.2%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3Ccircle%20cx%3D%2715.5%27%20cy%3D%2715%27%20r%3D%271.1%27%20fill%3D%27%23fff%27%20opacity%3D%27.5%27%2F%3E%3C%2Fsvg%3E")}
+.sheet{background:rgba(20,30,70,.35)}
+.sb{background:color-mix(in srgb,var(--card) 72%,transparent);-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);border:1px solid var(--gl);border-bottom:0;border-radius:32px 32px 0 0}
+
+/* ---- fixes ---- */
+:root{--g2:rgba(255,255,255,.64)}
+@media(prefers-color-scheme:dark){:root{--g2:rgba(255,255,255,.13)}}
+body::after{opacity:.3;filter:none}
+@media(prefers-color-scheme:dark){body::after{opacity:.26}}
+#t-cal .card,#t-hist .card,#t-set .card{background:var(--g2)}
+.sb{background:color-mix(in srgb,var(--card) 86%,transparent)}
+.tl{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.tq{border:1px solid var(--gl);background:var(--g);border-radius:18px;overflow:hidden}
+.tp{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;border:0;background:none;padding:13px 16px;font-size:14px;font-weight:500;text-align:right;color:var(--tx)}
+.tp::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid var(--mu);border-bottom:2px solid var(--mu);transform:rotate(45deg) translateY(-2px);transition:transform .25s}
+.tq.open .tp{color:var(--pk)}
+.tq.open .tp::after{transform:rotate(-135deg) translateY(-2px);border-color:var(--pk)}
+.tw{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease}
+.tq.open .tw{grid-template-rows:1fr}
+.tw>.ans{overflow:hidden;min-height:0;padding:0 16px;font-size:13.5px;line-height:2;color:var(--mu)}
+.tq.open .tw>.ans{padding:0 16px 14px}
+.x{min-width:36px;height:36px;padding:0;border-radius:50%;display:inline-grid;place-items:center;font-size:19px;background:var(--g);border:1px solid var(--gl)}
+.row>.x{flex:0 0 36px}
+.row>b{font-weight:600}
+.grid{gap:6px 4px}
+.w{font-size:11.5px}
+.c{font-size:14px;border-radius:50%;min-width:0}
+.pp{box-shadow:none;border:1.5px dashed var(--pk);color:var(--rt)}
+.fz{background:color-mix(in srgb,var(--gr) 26%,transparent);color:var(--pu)}
+.ov{background:var(--pu);color:var(--card)}
+.td{outline:2px solid var(--tx);outline-offset:-2px}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.seg button{font-size:13.5px}
+@media(prefers-reduced-motion:reduce){.tw,.tp::after{transition:none}}
+#toast{position:fixed;z-index:30;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:86vw;padding:12px 20px;border-radius:999px;background:var(--card);color:var(--tx);border:1px solid var(--gl);box-shadow:0 12px 30px -10px var(--sh);font-size:13.5px;transition:.25s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---- افزوده‌ها (همان تم اصلی) ---- */
+.hid{display:none!important}
+.hero{padding:28px 16px 22px}
+.lbl{font-size:13px;color:var(--mu)}
+.pill{background:var(--gr2);color:var(--pu);border:1px dashed var(--gl)}
+.pill.on{background:var(--wine);color:#fff;border:0}
+.rng{font-size:20px;font-weight:600;color:var(--rt);margin:4px 0 8px}
+.card p{margin:0 0 8px;font-size:13.5px;color:var(--mu);line-height:2}
+.sig{border-inline-start:4px solid var(--pk)}
+.urg{border:2px solid var(--pk)}.urg h2{color:var(--rt)}
+.note{background:var(--g);border:1px solid var(--gl);border-radius:16px;padding:12px 16px;font-size:13px;line-height:1.9;color:var(--mu);margin-top:16px}
+.row{flex-wrap:wrap}.row>*{flex:1 1 120px}.row .btn{margin-top:8px}
+button.c{border:0;background:none;padding:0;color:inherit;font-family:inherit;min-width:0}
+button.pd{background:var(--wine);color:#fff}
+.pp{background:none}
+.dt.d{background:none;border:1.5px dashed var(--pk)}
+:focus-visible{outline:2px solid var(--rt);outline-offset:2px}
+textarea{width:100%;min-height:88px;padding:12px 16px;border-radius:16px;border:1px solid var(--gl);background:var(--g);box-shadow:inset 0 1px 2px rgba(36,56,120,.12);font-size:14.5px;resize:vertical}
+input[type=range]{width:100%;accent-color:var(--pk);min-height:40px}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--pk);flex:none}
+.ck{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--bd);min-height:48px;font-size:13.5px}
+.src,.rv,.ds{font-size:12px;color:var(--mu);line-height:1.9}.src a{color:var(--rt)}
+.clinh{margin:24px 0 0;font-size:13px;color:var(--rt);font-weight:600}
+.ans{display:none;padding:0 16px 16px;font-size:13.5px;line-height:2;color:var(--mu)}.tq.open .ans{display:block}
+.tp{min-height:48px}
+.mi{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:12px 16px;margin-bottom:8px;border-radius:18px;border:1px solid var(--gl);background:var(--g);text-align:right}
+.pv{white-space:pre-wrap;font-size:13px;line-height:2;background:var(--g);border:1px solid var(--gl);border-radius:16px;padding:16px}
+.sb{max-height:88dvh;overflow:auto}
+.card,.sb,.tq,.item{overflow-wrap:anywhere}
+.tabs button{min-width:0}
+@media print{body>*:not(#t-rep),#t-rep .card:not(.pvc),#back{display:none!important}body{background:#fff;padding:0}body::before,body::after{display:none}.pv{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div class="hd"><h1>چرخه من</h1><span class="by">ساخته‌شده برای<br>جوانا خانم</span></div>
+<div class="sub" id="today" style="margin-bottom:8px"></div>
+<div id="back" class="hid"><button class="x" data-go="more" aria-label="بازگشت" style="width:auto;border-radius:20px;padding:0 16px;margin-bottom:16px">‹ بیشتر</button></div>
+
+<section id="t-home"></section>
+
+<section id="t-cal" class="hid"><div class="card"><div class="seg" id="seg"></div><div id="calbox"></div>
+<div class="leg"><span><i class="dt" style="--c:var(--pkb)"></i>خون‌ریزی ثبت‌شده</span><span><i class="dt d"></i>بازه‌ی تخمینی پریود (تخمین)</span><span><i class="dt" style="--c:var(--sg)"></i>علائم ثبت‌شده</span><span><i class="dt" style="--c:var(--tx)"></i>امروز</span></div>
+<button class="btn alt" data-act="today">امروز</button></div></section>
+
+<section id="t-hist" class="hid"><div class="seg" id="hseg"></div>
+<div id="hp-log"></div>
+<div id="hp-rec" class="hid">
+  <div class="card"><h2 id="ftitle">ثبت پریود جدید</h2>
+    <label>تاریخ شروع (اولین روز خون‌ریزی)</label><div class="dp" id="d-start"></div>
+    <label>تاریخ پایان (اختیاری)</label><div class="dp" id="d-end"></div>
+    <button class="btn" id="add">ثبت</button><button class="btn alt hid" id="cancel">انصراف از ویرایش</button></div>
+  <div class="card"><h2>سابقه</h2><div id="list"></div></div>
+</div></section>
+
+<section id="t-info" class="hid">
+  <div class="card"><h2>پرسش‌های پرتکرار</h2><div id="faq"></div></div>
+  <div class="card"><h2>کتابخانه‌ی آموزشی</h2><input type="search" id="q" placeholder="جست‌وجو: درد، PCOS، بهداشت…" aria-label="جست‌وجو"><div id="kb"></div></div>
+  <div class="note">این برنامه برای آموزش و ثبت الگوهای چرخه قاعدگی است و جایگزین تشخیص یا مشاوره پزشک نیست.</div>
+</section>
+
+<section id="t-more" class="hid"><div class="card"><h2>بیشتر</h2><div id="mlist"></div></div>
+<div class="note">این برنامه برای آموزش و ثبت الگوهای چرخه قاعدگی است و جایگزین تشخیص یا مشاوره پزشک نیست. این برنامه روز امن یا بازه باروری را نشان نمی‌دهد و روش پیشگیری از بارداری نیست.</div></section>
+
+<section id="t-ins" class="hid"></section>
+<section id="t-care" class="hid"></section>
+<section id="t-rep" class="hid"></section>
+<section id="t-rem" class="hid"></section>
+<section id="t-set" class="hid"></section>
+
+<div class="tabs" id="tabs"><button data-t="home" class="on"><svg viewBox="0 0 24 24"><path d="M12 2.6c3.9 4.6 6.3 7.7 6.3 11a6.3 6.3 0 0 1-12.6 0c0-3.3 2.4-6.4 6.3-11z"/><path d="M8.6 14.2a3.6 3.6 0 0 0 3 3.4" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></svg><span>امروز</span></button><button data-t="cal"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="5" opacity=".38"/><path d="M3 10a5.5 5.5 0 0 1 5.5-5.5h7A5.5 5.5 0 0 1 21 10z"/><rect x="7.5" y="2.5" width="2.2" height="4.2" rx="1.1"/><rect x="14.3" y="2.5" width="2.2" height="4.2" rx="1.1"/></svg><span>تقویم</span></button><button data-t="hist"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" opacity=".38"/><rect x="11" y="6.8" width="2" height="10.4" rx="1"/><rect x="6.8" y="11" width="10.4" height="2" rx="1"/></svg><span>ثبت</span></button><button data-t="info"><svg viewBox="0 0 24 24"><path d="M3 6.5a2.7 2.7 0 0 1 2.7-2.7H11v15.4H5.7A2.7 2.7 0 0 0 3 21.9z" opacity=".38"/><path d="M21 6.5a2.7 2.7 0 0 0-2.7-2.7H13v15.4h5.3a2.7 2.7 0 0 1 2.7 2.7z"/></svg><span>راهنما</span></button><button data-t="more"><svg viewBox="0 0 24 24"><rect x="3" y="4.9" width="18" height="2.4" rx="1.2" opacity=".38"/><rect x="3" y="10.8" width="18" height="2.4" rx="1.2" opacity=".38"/><rect x="3" y="16.7" width="18" height="2.4" rx="1.2" opacity=".38"/><circle cx="15.5" cy="6.1" r="2.9"/><circle cx="8.5" cy="12" r="2.9"/><circle cx="14" cy="17.9" r="2.9"/></svg><span>بیشتر</span></button></div>
+
+<div id="dsh" class="sheet hid"><div class="sb" id="dsb"></div></div>
+<script>
+const KEY='cycle_v1';
+let S={periods:[],cycle:28,len:5,rem:2,cal:'j',log:{},rm:{on:false,per:true,sup:false,sym:false},th:'noir',age:'',ym:'',meds:'',qs:'',chk:{d:'',ids:[]},ro:{notes:false,sym:true,flags:true,mo:6}};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+S.log=S.log||{};S.periods=S.periods||[];S.rm=Object.assign({on:false,per:true,sup:false,sym:false},S.rm||{});S.ro=Object.assign({notes:false,sym:true,flags:true,mo:6},S.ro||{});S.chk=S.chk||{d:'',ids:[]};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const P=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c,12)};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const diff=(a,b)=>Math.round((a-b)/864e5);
+const now=()=>{const d=new Date();d.setHours(12,0,0,0);return d};
+const CAL=()=>S.cal==='g'?'gregory':'persian';
+const fmt=(d,w)=>new Intl.DateTimeFormat('fa-IR-u-ca-'+CAL(),{weekday:w?'long':undefined,day:'numeric',month:'long',year:'numeric'}).format(d);
+const fmtS=d=>new Intl.DateTimeFormat('fa-IR-u-ca-'+CAL(),{day:'numeric',month:'long'}).format(d);
+const fa=n=>new Intl.NumberFormat('fa-IR').format(n);
+const med=a=>{const s=[...a].sort((x,y)=>x-y),m=s.length>>1;return s.length%2?s[m]:Math.round((s[m-1]+s[m])/2)};
+const avg=a=>Math.round(a.reduce((x,y)=>x+y,0)/a.length);
+const isB=L=>!!(L&&L.f&&L.f!=='بدون');
+const sorted=()=>[...S.periods].sort((a,b)=>a.start<b.start?-1:1);
+const gaps=()=>{const ps=sorted(),g=[];for(let i=1;i<ps.length;i++)g.push({s:ps[i-1].start,e:ps[i].start,n:diff(P(ps[i].start),P(ps[i-1].start))});return g};
+const cycles=()=>gaps().filter(g=>g.n>=15&&g.n<=90);
+const logsIn=(a,b)=>Object.keys(S.log).filter(k=>k>=a&&k<b).sort();
+const bleeding=t=>{const k=iso(t);return isB(S.log[k])||S.periods.some(p=>p.end&&p.start<=k&&k<=p.end)};
+
+/* پیش‌بینی: فقط از تاریخ‌های تأییدشده؛ میانه‌ی ۳ تا ۶ چرخه‌ی کامل اخیر */
+function predict(){
+  const ps=sorted();if(!ps.length)return{state:'none',n:0};
+  const last=ps[ps.length-1].start,v=cycles().slice(-6).map(g=>g.n);
+  if(v.length<2)return{state:'few',n:v.length,last};
+  const M=med(v),sp=Math.max(...v)-Math.min(...v),n=v.length;
+  let w=Math.max(3,Math.ceil(sp/2));if(n===2)w=Math.max(w,5);
+  const L=P(last);
+  return{state:'ok',n,M,sp,w,last,v,a:add(L,M-w),b:add(L,M+w),conf:(n===2||sp>10)?'low':n<6?'mid':'high'}}
+
+const WL={soak:'خیس شدن کامل پد یا تامپون هر ۱ تا ۲ ساعت',bed:'نشت خون به لباس یا ملحفه',clot:'لخته‌های بزرگ یا ریزش ناگهانی خون',dizzy:'سرگیجه، ضعف یا خستگی غیرعادی',faint:'خون‌ریزی خیلی شدید همراه با غش، ضعف شدید، تنگی نفس یا درد قفسه سینه',disrupt:'درد، مدرسه یا خواب یا کارهای روزمره‌ام را مختل کرده'};
+const URG='اگر خون‌ریزی خیلی شدید همراه با ضعف شدید، غش، تنگی نفس یا درد قفسه سینه داری، همین حالا از یک فرد قابل اعتماد کمک بگیر و به خدمات درمانی فوری مراجعه کن.';
+const CARE='اگر درد یا خون‌ریزی روی فعالیت‌های روزمره‌ات اثر می‌گذارد، بهتر است با پزشک یا ماما صحبت کنی.';
+function signals(){
+  const o=[],t=now(),ps=sorted(),rec=[];
+  for(let i=0;i<3;i++){const L=S.log[iso(add(t,-i))];if(L)rec.push(L)}
+  const W=x=>rec.some(L=>(L.w||[]).includes(x));
+  if(W('faint'))o.push({id:'urg',u:1,t:'کمک فوری',x:URG});
+  if(W('soak')||W('bed')||W('clot')||W('dizzy'))o.push({id:'hv',t:'خون‌ریزی زیاد؛ بهتر است مشورت پزشکی بگیری',x:CARE});
+  if(W('disrupt'))o.push({id:'pn',t:'درد',x:'دردی که باعث می‌شود مدرسه، خواب یا کارهای روزمره‌ات مختل شود، ارزش بررسی پزشکی دارد.'});
+  ps.slice(-3).forEach(p=>{if(p.end&&diff(P(p.end),P(p.start))+1>7&&!o.some(s=>s.id==='d7'))o.push({id:'d7',t:'خون‌ریزی بیش از ۷ روز',x:'برای یکی از پریودهای ثبت‌شده بیش از ۷ روز خون‌ریزی ثبت شده است. بهتر است این موضوع را با یک متخصص سلامت در میان بگذاری.'})});
+  if(ps.length){const l=ps[ps.length-1];if(!l.end&&Object.keys(S.log).some(k=>k>=iso(add(P(l.start),7))&&k<=iso(add(P(l.start),30))&&isB(S.log[k])))o.push({id:'d7o',t:'ادامه‌ی خون‌ریزی بعد از روز ۷',x:'خون‌ریزی بعد از روز هفتم هم ثبت شده است. بهتر است این موضوع را با یک متخصص سلامت در میان بگذاری.'})}
+  if(gaps().some(g=>g.n>90)||(ps.length&&diff(t,P(ps[ps.length-1].start))>90))o.push({id:'g90',t:'فاصله‌ی بیش از ۹۰ روز',x:'بین دو پریود (یا از آخرین پریود ثبت‌شده) بیش از ۹۰ روز فاصله است. ممکن است ثبت‌ها ناقص باشد؛ اگر این‌طور نیست با پزشک صحبت کن و سن و زمان اولین پریودت را هم در نظر بگیرید.'});
+  const g=cycles();if(g.length&&S.age!=='19+'){const n=g[g.length-1].n;if(n<21||n>45)o.push({id:'cyc',t:'آخرین چرخه‌ی ثبت‌شده: '+fa(n)+' روز',x:'در نوجوانان چرخه‌ها معمولاً هر ۲۱ تا ۴۵ روز رخ می‌دهند. در سال‌های اول بعد از اولین پریود نامنظمی شایع است و به‌معنی بیماری نیست؛ اگر تکرار شد، با پزشک یا ماما صحبت کن.'})}
+  return o.sort((a,b)=>(b.u||0)-(a.u||0))}
+S.log=S.log||{};S.cal=S.cal||'j';
+const CA=()=>S.cal==='g'?'gregory':'persian';
+const cpf={};
+const part=(d,c)=>{const f=cpf[c]=cpf[c]||new Intl.DateTimeFormat('en-US-u-ca-'+c,{year:'numeric',month:'numeric',day:'numeric'});const o={};f.formatToParts(d).forEach(p=>{if(p.type!=='literal'&&p.type!=='era')o[p.type[0]]=+String(p.value).replace(/\D/g,'')});return o};
+const jp=d=>part(d,'persian'),cp=d=>part(d,CA());
+const fy=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
+function dp(id,opt){$(id).innerHTML='<button type="button" class="dpb" data-dp="'+id+'" data-o="'+(opt?1:'')+'"></button>';sd(id,'')}
+const gd=id=>$(id).firstChild.dataset.v||'';
+const sd=(id,v)=>{const b=$(id).firstChild;b.dataset.v=v||'';b.textContent=v?fmt(P(v),true):(b.dataset.o?'بدون تاریخ پایان (اختیاری)':'انتخاب تاریخ')};
+const sh=document.createElement('div');sh.id='sheet';sh.className='sheet hid';
+sh.innerHTML='<div class="sb"><div class="sh"></div><div id="sg"></div><div class="row"><button class="btn alt" id="s-clr" type="button">پاک کردن</button><button class="btn alt" id="s-td" type="button">امروز</button></div></div>';
+document.body.appendChild(sh);
+let shId=null,shRef=now();
+function drawSh(){let f=new Date(shRef);for(let i=0;i<32&&cp(f).d>1;i++)f=add(f,-1);shRef=f;const m=cp(f).m,sel=gd(shId),b=(n,t)=>'<button class="x" data-sm="'+n+'" type="button">'+t+'</button>';
+  let h='<div class="row" style="align-items:center;text-align:center">'+b(-12,'»')+b(-1,'›')+'<b style="flex:3">'+new Intl.DateTimeFormat('fa-IR-u-ca-'+CA(),{month:'long',year:'numeric'}).format(f)+'</b>'+b(1,'‹')+b(12,'«')+'</div><div class="grid">';
+  'ش ی د س چ پ ج'.split(' ').forEach(w=>h+='<span class="w">'+w+'</span>');
+  for(let i=(f.getDay()+1)%7;i>0;i--)h+='<span></span>';
+  for(let x=f;cp(x).m===m;x=add(x,1)){const k=iso(x);h+='<span class="c'+(k===sel?' pd':'')+(+x===+now()?' td':'')+'" data-pick="'+k+'">'+fa(cp(x).d)+'</span>'}
+  $('sg').innerHTML=h+'</div>'}
+function shiftSh(n){let f=shRef;for(let i=0;i<Math.abs(n);i++){f=n<0?add(f,-1):add(f,32);for(let j=0;j<32&&cp(f).d>1;j++)f=add(f,-1)}shRef=f;drawSh()}
+document.addEventListener('click',e=>{const t=e.target,d=t.dataset||{},cl=()=>sh.classList.add('hid');
+  if(d.dp){shId=d.dp;const v=gd(shId);shRef=v?P(v):now();$('s-clr').classList.toggle('hid',!d.o);drawSh();sh.classList.remove('hid')}
+  else if(d.sm)shiftSh(+d.sm);
+  else if(d.pick){sd(shId,d.pick);cl()}
+  else if(t===sh)cl();
+  if(t.id==='s-clr'){sd(shId,'');cl()}
+  if(t.id==='s-td'){sd(shId,iso(now()));cl()}});
+const REV='۲۱ آبان ۱۴۰۵ (۱۲ نوامبر ۲۰۲۶)';
+const SRC={a1:['ACOG — قاعدگی به‌عنوان نشانه‌ی حیاتی','https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2015/12/menstruation-in-girls-and-adolescents-using-the-menstrual-cycle-as-a-vital-sign'],a2:['ACOG — Heavy and Abnormal Periods','https://www.acog.org/womens-health/faqs/heavy-and-abnormal-periods'],a3:['ACOG — Bleeding Disorders in Adolescents','https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2019/09/screening-and-management-of-bleeding-disorders-in-adolescents-with-heavy-menstrual-bleeding'],a4:['ACOG — Dysmenorrhea','https://www.acog.org/womens-health/faqs/dysmenorrhea-painful-periods'],a5:['ACOG Committee Opinion 760','https://doi.org/10.1097/AOG.0000000000002978'],a6:['ACOG CPG 7 — Premenstrual Disorders','https://www.acog.org/clinical/clinical-guidance/clinical-practice-guideline/articles/2023/12/management-of-premenstrual-disorders'],a7:['راهنمای بین‌المللی PCOS در نوجوانان (BMC Medicine)','https://pmc.ncbi.nlm.nih.gov/articles/11899933/'],a8:['ACOG — Hyperandrogenic Adolescent','https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2019/10/screening-and-management-of-the-hyperandrogenic-adolescent'],n1:['NHS — Period pain','https://www.nhs.uk/symptoms/period-pain/'],n2:['NHS — Heavy periods','https://www.nhs.uk/conditions/heavy-periods/'],c1:['CDC — Menstrual Hygiene','https://www.cdc.gov/hygiene/about/menstrual-hygiene.html'],h1:['Hennegan و همکاران ۲۰۲۱ — سلامت قاعدگی','https://pmc.ncbi.nlm.nih.gov/articles/PMC8098749/'],a13:['ACOG — Your First Period','https://www.acog.org/womens-health/faqs/your-first-period']};
+const ART=[
+{t:'چرخه‌ی قاعدگی چیست و روزها چطور شمرده می‌شوند؟',s:['a1','a13'],b:'روز اول چرخه، اولین روز خون‌ریزی قاعدگی است. طول چرخه از روز اول یک پریود تا روز اول پریود بعدی شمرده می‌شود. عدد ۲۸ فقط یک مثال آموزشی و میانگین است، نه هدف؛ الگوی چرخه بین افراد و حتی در یک نفر از ماهی به ماه دیگر فرق می‌کند. ثبت منظم تاریخ‌ها کمک می‌کند الگوی خودت را ببینی.'},
+{t:'چه چیزی در سال‌های اول بعد از اولین پریود ممکن است طبیعی باشد؟',s:['a1','a13'],b:'در سال‌های اول بعد از اولین پریود (menarche) تنظیم هورمونی هنوز در حال رسیدن است و نامنظمی شایع است؛ نامنظمی به‌خودی‌خود به‌معنی بیماری نیست. در نوجوانان چرخه‌ها معمولاً هر ۲۱ تا ۴۵ روز رخ می‌دهند و خون‌ریزی معمولاً ۷ روز یا کمتر است. اگر پریودها زودتر از ۲۱ روز یا دیرتر از ۴۵ روز می‌آیند، حتی یک‌بار فاصله‌ی بیش از ۹۰ روز افتاد، خون‌ریزی بیش از ۷ روز طول کشید، یا هر ۱ تا ۲ ساعت یک پد یا تامپون کاملاً خیس می‌شود، ارزیابی پزشکی مناسب است.'},
+{t:'سطح خون‌ریزی: لکه‌بینی، کم، متوسط، زیاد',s:['a2','n2'],b:'این دسته‌ها فقط برای یادداشت شخصی تو هستند و برنامه از روی آن‌ها حجم خون را تخمین نمی‌زند. اگر هر ۱ تا ۲ ساعت یک پد یا تامپون کاملاً خیس را عوض می‌کنی، خون از لباس یا ملحفه نشت می‌کند، لخته‌های بزرگ می‌بینی، یا همراه آن سرگیجه یا ضعف داری، بهتر است مشورت پزشکی بگیری.'},
+{t:'گرفتگی و درد قاعدگی: چرا و کی نیاز به بررسی دارد؟',s:['a4','n1'],b:'گرفتگی‌های قاعدگی شایع‌اند. گرما، استراحت و حرکت ملایم در صورت راحت بودن ممکن است کمک کند. دردی که مدرسه، خواب یا کارهای روزمره را مختل کند، تازه یا رو‌به‌بدتر باشد، با تب یا ترشح غیرعادی بیاید یا با مراقبت مناسب ادامه پیدا کند، ارزش بررسی پزشکی دارد. درد را «فقط عادی» حساب نکن. درباره‌ی انتخاب دارو با پزشک یا داروساز صحبت کن.'},
+{t:'خون‌ریزی زیاد و کم‌آهنی (iron deficiency)',s:['a3','n2'],b:'خون‌ریزی زیاد می‌تواند با کم شدن ذخیره‌ی آهن همراه شود؛ نشانه‌ها شامل خستگی، رنگ‌پریدگی، سرگیجه یا تنگی نفس است. تشخیص با ارزیابی و آزمایش پزشک انجام می‌شود، نه با این برنامه. اگر این نشانه‌ها را داری یا خون‌ریزی زیاد تکرار می‌شود با پزشک صحبت کن. اگر خون‌ریزی خیلی شدید با غش، ضعف شدید، درد قفسه سینه یا تنگی نفس همراه است، همین حالا کمک فوری بگیر.'},
+{t:'نشانه‌های پیش از قاعدگی (PMS): ثبت و کمک گرفتن',s:['a6'],b:'برخی افراد در روزهای پیش از پریود تغییراتی در خلق، انرژی یا بدن حس می‌کنند. ثبت روزانه کمک می‌کند ببینی این نشانه‌ها در چرخه‌های مختلف تکرار می‌شوند یا نه. این برنامه PMS یا PMDD را تشخیص نمی‌دهد. اگر حال روحی‌ات روی زندگی روزمره اثر می‌گذارد، با یک فرد قابل اعتماد یا متخصص سلامت صحبت کن؛ احساسات تو «فقط هورمون» نیستند.'},
+{t:'سندرم تخمدان پلی‌کیستیک (PCOS) و محدودیت‌های این برنامه',s:['a7','a8'],b:'نامنظمی قاعدگی یا جوش به‌تنهایی برای تشخیص تخمدان پلی‌کیستیک کافی نیست. تشخیص در نوجوانی نیازمند ارزیابی دقیق پزشک است، چون جوش و نامنظمی در بلوغ طبیعی هم دیده می‌شود. طبق راهنمای بین‌المللی، تشخیص در نوجوانان وقتی مطرح می‌شود که نامنظمی مداوم (با توجه به سال‌های بعد از اولین پریود) و نشانه‌های بالینی یا آزمایشگاهی افزایش آندروژن هر دو وجود داشته باشد و علل دیگر بررسی شده باشند؛ سونوگرافی و AMH برای تشخیص در نوجوانان استفاده نمی‌شوند. اگر تغییرات چرخه همراه با نشانه‌هایی مثل جوش شدید یا افزایش موی درشت صورت و بدن ادامه یافت، پزشک می‌تواند علت‌های ممکن را بررسی کند. این برنامه نمی‌تواند PCOS را تشخیص دهد.'},
+{t:'اندومتریوز: نشانه‌هایی که ارزیابی می‌خواهند',s:['a5','n1'],b:'اگر درد قاعدگی با مراقبت مناسب هم ادامه دارد، رو‌به‌بدتر است یا روی مدرسه، خواب و زندگی روزمره اثر می‌گذارد، ممکن است نیاز به بررسی علت‌های ثانویه مثل اندومتریوز باشد. خودتشخیصی نکن و درد را نادیده نگیر؛ یادداشت‌های درد و گزارش آماده‌ی مراجعه می‌تواند به گفتگو با پزشک کمک کند. این برنامه اندومتریوز را تشخیص نمی‌دهد.'},
+{t:'بهداشت قاعدگی و ایمنی محصولات',s:['c1','h1'],b:'پد، تامپون و سایر محصولات را طبق دستور سازنده و به‌طور منظم عوض کن و دست‌ها را قبل و بعد از تعویض بشوی. شست‌وشوی ملایم بیرونی کافی است؛ از محصولات معطر ناحیه‌ی حساس و شست‌وشوی داخل واژن (دوش) خودداری کن. انتخاب محصول قضاوت ندارد؛ حریم خصوصی، دسترسی به مواد تمیز و احترام هم بخشی از سلامت قاعدگی‌اند.'},
+{t:'خواب، حرکت، آب و راحتی',s:['n1','a4'],b:'خواب منظم، نوشیدن مایعات به‌اندازه‌ی معمول، گرما و حرکت ملایم (در صورت راحت بودن) می‌تواند در روزهای ناراحت کمک کند. حرکت و غذا برای جبران، تنبیه یا کنترل وزن نیستند؛ هدف راحتی بدن است. اگر نشانه‌ها با فعالیت‌های روزمره تداخل دارد، با پزشک یا ماما صحبت کن.'},
+{t:'آماده شدن برای ویزیت زنان',s:['a1'],clin:1,b:'قبل از ویزیت این‌ها را آماده کن: تاریخ اولین روز آخرین پریود، طول چرخه‌ها، مدت و میزان خون‌ریزی، شدت و محل درد، نشانه‌ها و تاریخ‌شان، دارو یا مکملی که خودت وارد کرده‌ای، و پرسش‌هایت. در بخش «گزارش برای ویزیت» می‌توانی خلاصه‌ای را پیش‌نمایش کنی و خودت تصمیم بگیری چه چیزی در آن باشد؛ هیچ چیز خودکار ارسال نمی‌شود.'},
+{t:'باورهای رایج و واقعیت‌ها',s:['a1','a4'],b:'باور: همه‌ی چرخه‌ها ۲۸ روزه‌اند. واقعیت: ۲۸ یک میانگین آموزشی است و الگوها فرق می‌کنند. باور: نامنظمی یعنی بیماری. واقعیت: در سال‌های اول شایع است، ولی الگوهای مداوم را می‌شود با پزشک بررسی کرد. باور: درد شدید عادی است. واقعیت: دردی که زندگی را مختل می‌کند بررسی می‌خواهد. باور: یک برنامه‌ی تقویمی می‌تواند زمان‌های باروری را دقیق بگوید. واقعیت: تقویم نمی‌تواند، و این برنامه روش پیشگیری از بارداری نیست.'}];
+const FAQ=[['پریودم دیر شده؛ یعنی چه؟','یک تأخیر کوتاه یا گذشتن از بازه‌ی تخمینی به‌تنهایی دلیل بر بیماری یا بارداری نیست. اگر نگرانی یا فاصله بیش از ۹۰ روز شد، با پزشک صحبت کن.'],
+['تخمین پریود بعدی قطعی است؟','نه. فقط یک بازه‌ی تخمینی از چرخه‌های ثبت‌شده‌ی توست و هر چرخه ممکن است فرق کند.'],
+['چرخه‌ی من نامنظم است؟','در سال‌های اول بعد از اولین پریود نامنظمی شایع است. اگر الگو ادامه‌دار است یا نگرانی، با پزشک یا ماما صحبت کن.'],
+['خون‌ریزی چند روز طبیعی است؟','معمولاً ۷ روز یا کمتر. بیش از ۷ روز بهتر است با متخصص سلامت در میان گذاشته شود.'],
+['چه موقع خون‌ریزی زیاد است؟','اگر هر ۱ تا ۲ ساعت پد یا تامپون کاملاً خیس می‌شود، از لباس نشت می‌کند، لخته‌ی بزرگ هست یا سرگیجه و ضعف داری، مشورت پزشکی بگیر.'],
+['درد چه وقت به پزشک نیاز دارد؟','وقتی مدرسه، خواب یا کارهای روزمره را مختل می‌کند، تازه یا رو‌به‌بدتر است، با تب یا ترشح غیرعادی همراه است یا با مراقبت ادامه دارد.'],
+['جوش و نامنظمی یعنی PCOS؟','نه. این‌ها به‌تنهایی برای تشخیص کافی نیستند و در بلوغ شایع‌اند. فقط پزشک می‌تواند ارزیابی کند.'],
+['PMS چیست؟','تغییرات بدنی یا خلقی در روزهای پیش از پریود. ثبت روزانه الگو را نشان می‌دهد، ولی برنامه تشخیص نمی‌دهد.'],
+['در پریود می‌شود حرکت کرد؟','حرکت ملایم مثل پیاده‌روی در صورت راحت بودن ممکن است کمک کند. اگر ضعف یا درد داری استراحت کن.'],
+['هر چند وقت محصول را عوض کنم؟','طبق دستور سازنده و به‌طور منظم؛ دست‌ها را قبل و بعد بشوی.'],
+['این برنامه تشخیص می‌دهد؟','نه. فقط آموزش، ثبت و تخمین شفاف می‌دهد و جای پزشک یا ماما را نمی‌گیرد.'],
+['اطلاعاتم کجا ذخیره می‌شود؟','فقط روی همین دستگاه (حافظه‌ی مرورگر) و به هیچ سرور یا سرویسی فرستاده نمی‌شود.']];
+const TIPS=[
+['گرمای ملایم','کیسه‌ی آب گرم یا حمام گرم برای شکم و کمر.','گرما ممکن است عضلات منقبض را آرام‌تر کند؛ مراقب سوختگی باش.','n1'],
+['حرکت ملایم','اگر راحت هستی، کمی پیاده‌روی یا کشش سبک.','حرکت ملایم ممکن است به راحتی بدن کمک کند؛ اگر ناراحتی داری استراحت کن.','n1'],
+['استراحت و آب','امروز خواب کافی و نوشیدن معمول مایعات را جدی بگیر.','خواب و مایعات کافی بخشی از مراقبت راحتی بدن‌اند.','a4'],
+['آماده‌سازی','محصولات بهداشتی و لباس زیر اضافه را آماده کن و دست‌هایت را قبل و بعد از تعویض بشوی.','آمادگی استرس را کم می‌کند و بهداشت دست در دستورالعمل CDC آمده است.','c1'],
+['ثبت آنچه کمک کرد','در ثبت روزانه یادداشت کن چه چیزی حالت را بهتر کرد.','این یادداشت‌ها در گفتگو با پزشک یا ماما مفید است.','a1']];
+const CHK=['کیسه‌ی آب گرم یا حمام گرم','استراحت و برنامه‌ی خواب','پیاده‌روی یا کشش ملایم (اگر راحتی)','نوشیدن مایعات به‌اندازه‌ی معمول','آماده کردن محصولات بهداشتی و لباس زیر اضافه','ثبت نشانه‌ها و آنچه کمک کرد','تماس با یک فرد قابل اعتماد اگر نشانه‌ها روی زندگی روزمره اثر دارند'];
+const SYM=['درد شکم','سردرد','تهوع','نفخ','حساسیت سینه','جوش','خستگی','تغییر اجابت مزاج','تغییر خواب','سایر'];
+const PLC=['پایین شکم','کمر','سر','سایر'],MD=['آرام','معمولی','کم‌حال','مضطرب','زودرنج','حساس','سایر'],EN=['کم','متوسط','زیاد'],SL=['ضعیف','متوسط','خوب'],PC=['هر ۱ تا ۲ ساعت','هر ۳ تا ۴ ساعت','هر ۵ ساعت یا بیشتر','مطمئن نیستم'],FL=['بدون','لکه‌بینی','کم','متوسط','زیاد'];
+let editKey=null,logD=now(),histP='log',calRef=now(),calF=now(),curTab='home';
+const SUBS=['ins','care','rep','rem','set'],TT={ins:'آمار و الگوها',care:'مراقبت از خود',rep:'گزارش برای ویزیت',rem:'یادآورها',set:'تنظیمات و حریم خصوصی'};
+const SRCH=k=>'<a href="'+SRC[k][1]+'" target="_blank" rel="noopener">'+SRC[k][0]+'</a>';
+const tidy=L=>{const e=!(L.s&&L.s.length)&&!L.f&&!L.n&&L.pn==null&&!(L.pl||[]).length&&!L.md&&!L.en&&!L.sl&&!L.pc&&!(L.w||[]).length;if(e)delete S.log[iso(logD)]};
+const resetForm=()=>{editKey=null;sd('d-start',iso(now()));sd('d-end','');$('ftitle').textContent='ثبت پریود جدید';$('add').textContent='ثبت';$('cancel').classList.add('hid')};
+
+/* ---- امروز ---- */
+function drawHome(){
+  const t=now(),ps=sorted(),pr=predict(),last=ps.length?P(ps[ps.length-1].start):null;let h='';
+  signals().forEach(s=>h+='<div class="card sig'+(s.u?' urg':'')+'" role="'+(s.u?'alert':'note')+'"><h2>'+s.t+'</h2><p>'+s.x+'</p></div>');
+  const act=bleeding(t);
+  h+='<div class="card hero">'+(last?'<div class="big">'+fa(diff(t,last)+1)+'</div><div class="lbl">روز چرخه (از اولین روز آخرین پریود ثبت‌شده)</div>':'<div class="lbl">هنوز پریودی ثبت نشده. از تب «ثبت» تاریخ شروع آخرین پریودت را وارد کن.</div>')+'<span class="pill'+(act?' on':'')+'">'+(act?'قاعدگی (خون‌ریزی ثبت شده)':'بین دو پریود / تخمینی')+'</span></div>';
+  h+='<div class="card"><h2>پریود بعدی (تخمین)</h2>';
+  if(pr.state==='ok'){
+    const cl={low:'بر اساس '+fa(pr.n)+' چرخه — تاریخچه‌ی محدود یا تغییرپذیری زیاد؛ بازه عریض‌تر است',mid:'بر اساس ۳ تا ۵ چرخه',high:'تاریخچه‌ی بیشتر در دسترس'}[pr.conf];
+    h+='<div class="rng">'+fmtS(pr.a)+' تا '+fmtS(pr.b)+'</div><span class="pill">تخمین · '+cl+'</span><p style="margin-top:8px">این فقط یک بازه‌ی تخمینی بر اساس چرخه‌های ثبت‌شده‌ی توست؛ تاریخ قطعی نیست.</p>'+(pr.n<6?'<p>برای دقیق‌تر شدن تخمین، چند چرخه‌ی کامل دیگر ثبت کن.</p>':'')+(t>pr.b?'<p>گذشتن از بازه‌ی تخمینی به‌تنهایی نشانه‌ی بیماری یا بارداری نیست؛ اگر نگرانی یا فاصله از ۹۰ روز بیشتر شد، با پزشک صحبت کن.</p>':'');
+    h+='<details><summary>این تخمین چطور حساب شده؟</summary><p>میانه‌ی طول '+fa(pr.n)+' چرخه‌ی کامل اخیر (فقط از تاریخ‌های شروعِ ثبت‌شده و تأییدشده؛ هیچ تاریخ پیش‌بینی‌شده‌ای در محاسبه استفاده نمی‌شود): '+pr.v.map(fa).join('، ')+' روز ← میانه '+fa(pr.M)+' روز.</p><p>اولین روز آخرین پریود تأییدشده: '+fmt(P(pr.last))+'. بازه = میانه ± '+fa(pr.w)+' روز، بر پایه‌ی اختلاف کمترین و بیشترین چرخه ('+fa(pr.sp)+' روز). با داده‌ی کمتر یا تغییرپذیری بیشتر، بازه عریض‌تر می‌شود.</p></details>'}
+  else h+='<p>اطلاعات کافی برای پیش‌بینی شخصی وجود ندارد.</p><p>برای تخمین حداقل ۲ چرخه‌ی کامل (۳ تاریخ شروع) لازم است؛ تاکنون '+fa(pr.n)+' چرخه‌ی کامل ثبت شده. به ثبت ادامه بده.</p>';
+  h+='</div><div class="card"><h2>اقدام سریع</h2><div class="row"><button class="btn alt" data-qa="bleed">ثبت خون‌ریزی</button><button class="btn alt" data-qa="sym">ثبت نشانه‌ها</button><button class="btn alt" data-qa="note">افزودن یادداشت</button><button class="btn alt" data-qa="cal">باز کردن تقویم</button></div></div>';
+  const T=TIPS[Math.floor(+t/864e5)%TIPS.length];
+  h+='<div class="card"><h2>نکته‌ی امروز: '+T[0]+'</h2><p>'+T[1]+'</p><details><summary>چرا ممکن است کمک کند؟</summary><p>'+T[2]+'</p><div class="src">منبع: '+SRCH(T[3])+'</div></details></div>';
+  h+='<div class="note">این برنامه برای آموزش و ثبت الگوهای چرخه قاعدگی است و جایگزین تشخیص یا مشاوره پزشک نیست.</div>';
+  $('t-home').innerHTML=h}
+
+/* ---- ثبت ---- */
+const chip=(k,v,on,lb)=>'<button type="button" class="chip'+(on?' on':'')+'" aria-pressed="'+!!on+'" data-k="'+k+'" data-v="'+v+'">'+(lb||v)+'</button>';
+function logHtml(){
+  const k=iso(logD),L=S.log[k]||{},tod=+logD===+now(),sec=(t,key,arr,cur,multi)=>'<div class="gl">'+t+'</div>'+arr.map(v=>chip(key,v,multi?(cur||[]).includes(v):cur===v)).join('');
+  let h='<div class="card"><div class="row" style="align-items:center;flex-wrap:nowrap"><button class="x" data-ld="-1" style="flex:0 0 40px" aria-label="روز قبل">›</button><h2 style="text-align:center;margin:0;flex:1">'+(tod?'امروز چه حسی داری؟':'ثبت روزهای قبل')+'</h2><button class="x" data-ld="1" style="flex:0 0 40px" aria-label="روز بعد"'+(tod?' disabled':'')+'>‹</button></div><div class="sub" style="text-align:center;margin:8px 0 0">'+fmt(logD,true)+' · همه‌ی بخش‌ها اختیاری‌اند</div>';
+  h+=sec('خون‌ریزی','f',FL,L.f);
+  h+='<div class="gl">درد (۰ تا ۱۰)</div>'+chip('pnon','',L.pn!=null,L.pn!=null?'پاک کردن درد':'ثبت شدت درد');
+  if(L.pn!=null)h+='<input type="range" id="pn" min="0" max="10" step="1" value="'+L.pn+'" aria-label="شدت درد"><div class="sub" id="pnv">'+fa(L.pn)+' از ۱۰</div>'+sec('محل درد','pl',PLC,L.pl,1);
+  const sy=[...SYM,...(L.s||[]).filter(x=>!SYM.includes(x))];
+  h+=sec('نشانه‌ها','s',sy,L.s,1)+sec('حال و هوا','md',MD,L.md)+sec('انرژی','en',EN,L.en)+sec('کیفیت خواب','sl',SL,L.sl);
+  h+='<div class="gl">فاصله‌ی تعویض محصول (اختیاری)</div>'+PC.map(v=>chip('pc',v,L.pc===v)).join('');
+  h+='<div class="gl">علائم هشدار (اگر مطمئن نیستی، چیزی انتخاب نکن)</div>'+Object.keys(WL).map(v=>chip('w',v,(L.w||[]).includes(v),WL[v])).join('');
+  if((L.w||[]).includes('faint'))h+='<div class="card urg" role="alert" style="margin:16px 0 0"><h2>کمک فوری</h2><p>'+URG+'</p></div>';
+  else if((L.w||[]).some(x=>x!=='faint'))h+='<div class="note">'+CARE+'</div>';
+  h+='<div class="gl">یادداشت</div><input type="text" id="note" placeholder="هر چیزی که می‌خواهی یادت بماند" aria-label="یادداشت">';
+  if(S.log[k])h+='<button class="btn alt" data-k="del" type="button">حذف ثبت این روز</button>';
+  return h+'</div>'}
+function drawHist(){
+  $('hseg').innerHTML=[['log','ثبت روزانه'],['rec','ثبت پریود']].map(a=>'<button data-hp="'+a[0]+'"'+(histP===a[0]?' class="on"':'')+'>'+a[1]+'</button>').join('');
+  $('hp-log').classList.toggle('hid',histP!=='log');$('hp-rec').classList.toggle('hid',histP!=='rec');
+  $('hp-log').innerHTML=logHtml();$('note').value=(S.log[iso(logD)]||{}).n||'';
+  const ps=[...sorted()].reverse();
+  $('list').innerHTML=ps.length?ps.map(p=>'<div class="item"><span>'+fmt(P(p.start))+(p.end?' تا '+fmt(P(p.end)):'')+'</span><span style="white-space:nowrap"><button class="x" data-ed="'+p.start+'" aria-label="ویرایش">✎</button> <button class="x" data-del="'+p.start+'" aria-label="حذف">✕</button></span></div>').join(''):'<div class="sub">موردی ثبت نشده.</div>'}
+function addPeriod(){
+  const a=gd('d-start'),e=gd('d-end');
+  if(!a||a==='INVALID')return toast('تاریخ شروع معتبر وارد کن');
+  if(e==='INVALID')return toast('تاریخ پایان معتبر نیست');
+  if(a>iso(now()))return toast('تاریخ شروع نمی‌تواند در آینده باشد؛ فقط تاریخ‌های واقعی ثبت می‌شوند');
+  if(e&&e<a)return toast('تاریخ پایان نباید قبل از شروع باشد');
+  if(e&&e>iso(now()))return toast('تاریخ پایان نمی‌تواند در آینده باشد');
+  const others=S.periods.filter(p=>p.start!==editKey);
+  if(others.some(p=>p.start===a))return toast('برای این تاریخ پریود ثبت شده است');
+  const bad=others.find(p=>Math.abs(diff(P(p.start),P(a)))<15||(e&&p.start>a&&p.start<=e));
+  const go=()=>{S.periods=S.periods.filter(p=>p.start!==editKey);S.periods.push({start:a,end:e||null});save();resetForm();render();toast('ثبت شد');tab('home')};
+  if(bad)askConfirm('این تاریخ کمتر از ۱۵ روز با پریود ثبت‌شده‌ی '+fmt(P(bad.start))+' فاصله دارد. مطمئنی درست است؟','بله، ثبت شود',go);else go()}
+
+/* ---- تقویم ---- */
+function drawCal(){
+  let f=new Date(calRef);for(let i=0;i<32&&cp(f).d>1;i++)f=add(f,-1);calF=f;
+  const m=cp(f).m,pr=predict(),a=pr.state==='ok'?iso(pr.a):'',b=pr.state==='ok'?iso(pr.b):'';
+  $('seg').innerHTML=[['j','شمسی'],['g','میلادی']].map(x=>'<button data-cal="'+x[0]+'"'+(S.cal===x[0]?' class="on"':'')+'>'+x[1]+'</button>').join('');
+  let h='<div class="row" style="align-items:center;flex-wrap:nowrap"><button class="x" data-cm="-1" style="flex:0 0 40px" aria-label="ماه قبل">›</button><b style="text-align:center;flex:1">'+new Intl.DateTimeFormat('fa-IR-u-ca-'+CAL(),{month:'long',year:'numeric'}).format(f)+'</b><button class="x" data-cm="1" style="flex:0 0 40px" aria-label="ماه بعد">‹</button></div><div class="grid">';
+  'ش ی د س چ پ ج'.split(' ').forEach(w=>h+='<span class="w">'+w+'</span>');
+  for(let i=(f.getDay()+1)%7;i>0;i--)h+='<span></span>';
+  for(let x=f;cp(x).m===m;x=add(x,1)){const k=iso(x),L=S.log[k],rec=S.periods.some(p=>p.start<=k&&k<=(p.end||p.start))||isB(L);
+    h+='<button type="button" class="c'+(rec?' pd':(a&&k>=a&&k<=b?' pp':''))+(L?' lg':'')+(+x===+now()?' td':'')+'" data-day="'+k+'" aria-label="'+fmt(x)+(rec?' — ثبت‌شده':(a&&k>=a&&k<=b?' — بازه‌ی تخمینی':''))+'">'+fa(cp(x).d)+'</button>'}
+  $('calbox').innerHTML=h+'</div>'}
+const dsh=$('dsh'),dsb=$('dsb');
+function openDay(k){
+  const L=S.log[k]||null,pr=predict(),est=pr.state==='ok'&&k>=iso(pr.a)&&k<=iso(pr.b),rec=S.periods.find(p=>p.start<=k&&k<=(p.end||p.start)),fut=k>iso(now());
+  let h='<div class="sh"></div><h2>'+fmt(P(k),true)+'</h2>';
+  if(rec)h+='<p>خون‌ریزی ثبت‌شده (تأییدشده توسط خودت).</p>';
+  if(est&&!rec)h+='<p>در بازه‌ی تخمینی پریود بعدی (فقط تخمین؛ قطعی نیست).</p>';
+  if(L){const r=[];if(L.f)r.push('خون‌ریزی: '+L.f);if(L.pn!=null)r.push('درد: '+fa(L.pn)+' از ۱۰'+((L.pl||[]).length?' ('+L.pl.join('، ')+')':''));if((L.s||[]).length)r.push('نشانه‌ها: '+L.s.join('، '));['md','en','sl'].forEach((q,i)=>{if(L[q])r.push(['حال','انرژی','خواب'][i]+': '+L[q])});if(L.n)r.push('یادداشت: '+L.n);h+='<div class="note" style="margin:8px 0">'+r.join('<br>')+'</div>'}
+  else if(!rec&&!est)h+='<p>برای این روز چیزی ثبت نشده.</p>';
+  if(!fut){h+='<button class="btn" data-dl="'+k+'">'+(L?'ویرایش ثبت این روز':'ثبت حال این روز')+'</button>';if(!rec)h+='<button class="btn alt" data-ds="'+k+'">ثبت شروع پریود از این روز</button>'}
+  h+='<button class="btn alt" data-act="closeday">بستن</button>';
+  dsb.innerHTML=h;dsb.style.transform='';dsh.classList.remove('hid')}
+
+/* ---- راهنما ---- */
+function drawInfo(q){
+  q=(q||'').trim();
+  if(!$('faq').innerHTML)$('faq').innerHTML=FAQ.map(a=>'<div class="tq"><button type="button" class="tp" aria-expanded="false"><span>'+a[0]+'</span></button><div class="ans">'+a[1]+'</div></div>').join('');
+  const r=ART.filter(a=>!q||(a.t+a.b).includes(q)),card=a=>'<details'+(a.clin?' class="clin"':'')+'><summary><span>'+a.t+'</span></summary><p>'+a.b+'</p><div class="src">منبع: '+a.s.map(SRCH).join(' ، ')+'</div><div class="rv">آخرین بررسی منابع: '+REV+'</div><div class="ds">اطلاعات آموزشی است، نه تشخیص.</div></details>';
+  $('kb').innerHTML=r.length?r.filter(a=>!a.clin).map(card).join('')+(r.some(a=>a.clin)?'<div class="clinh">مخصوص مراجعه به پزشک</div>'+r.filter(a=>a.clin).map(card).join(''):''):'<div class="sub">چیزی پیدا نشد؛ کلمه‌ی دیگری امتحان کن.</div>'}
+
+/* ---- آمار ---- */
+function drawIns(){
+  const C=cycles(),box=(t,b,n)=>'<div class="card"><h2>'+t+'</h2>'+b+'<div class="sub" style="margin:8px 0 0">'+n+'</div></div>',NE='<p>اطلاعات کافی برای شناسایی الگو وجود ندارد.</p>';
+  let h='<div class="note" style="margin:0 0 16px">همه‌ی این محاسبه‌ها فقط از ثبت‌های خودت ساخته می‌شوند و ممکن است ناقص باشند. این مشاهده‌ها به معنی علت قطعی یا تشخیص پزشکی نیستند.</div>';
+  const rng=C.length?fmt(P(C[0].s))+' تا '+fmt(P(C[C.length-1].e)):'';
+  if(C.length<2)h+=box('طول چرخه',C.length?'<p>یک چرخه برای دیدن روند کافی نیست ('+fa(C[0].n)+' روز).</p>':NE,'تعداد چرخه‌های کامل ثبت‌شده: '+fa(C.length)+'. چرخه = فاصله‌ی روز اول یک پریود تا روز اول پریود بعدی.');
+  else{const v=C.map(c=>c.n);h+=box('طول چرخه','<div class="item"><span>میانگین</span><b>'+fa(avg(v))+' روز</b></div><div class="item"><span>کمترین تا بیشترین</span><b>'+fa(Math.min(...v))+' تا '+fa(Math.max(...v))+' روز</b></div><div class="item"><span>تغییرپذیری (اختلاف بیشترین و کمترین)</span><b>'+fa(Math.max(...v)-Math.min(...v))+' روز</b></div>','بر اساس '+fa(C.length)+' چرخه‌ی کامل · '+rng+'. چرخه‌ها در افراد و حتی در یک نفر فرق می‌کنند.')}
+  const du=sorted().filter(p=>p.end).map(p=>diff(P(p.end),P(p.start))+1).filter(n=>n>=1&&n<=14);
+  h+=box('مدت خون‌ریزی',du.length<2?NE:'<div class="item"><span>میانگین</span><b>'+fa(avg(du))+' روز</b></div><div class="item"><span>کمترین تا بیشترین</span><b>'+fa(Math.min(...du))+' تا '+fa(Math.max(...du))+' روز</b></div>','بر اساس '+fa(du.length)+' پریود دارای تاریخ پایان. خون‌ریزی معمولاً ۷ روز یا کمتر است.');
+  const starts=sorted().map(p=>p.start),cyOf=k=>{let s=null;starts.forEach(a=>{if(a<=k)s=a});return s};
+  const bd=Object.keys(S.log).filter(k=>isB(S.log[k])),bc={},bs=new Set();
+  bd.forEach(k=>{(S.log[k].s||[]).forEach(s=>bc[s]=(bc[s]||0)+1);bs.add(cyOf(k))});
+  const bt=Object.entries(bc).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  h+=box('نشانه‌ها در روزهای خون‌ریزی',(C.length<2||bs.size<2||!bt.length)?NE:'<p>در روزهایی که ثبت کرده‌ای، این نشانه‌ها بیشتر دیده شده‌اند:</p>'+bt.map(x=>'<div class="item"><span>'+x[0]+'</span><b>'+fa(x[1])+' روز</b></div>').join(''),'این تحلیل بر اساس '+fa(bd.length)+' روز ثبت‌شده در '+fa(bs.size)+' چرخه است.');
+  const pre={},oth={};let pc=0,pd=0,od=0;
+  C.forEach(c=>{const pk=logsIn(iso(add(P(c.e),-5)),c.e),ok=logsIn(iso(add(P(c.s),7)),iso(add(P(c.e),-5)));
+    if(pk.length>=2&&ok.length>=2){pc++;pd+=pk.length;od+=ok.length;pk.forEach(k=>(S.log[k].s||[]).forEach(s=>{(pre[s]=pre[s]||{d:0,c:new Set()}).d++;pre[s].c.add(c.s)}));ok.forEach(k=>(S.log[k].s||[]).forEach(s=>oth[s]=(oth[s]||0)+1))}});
+  const pl=pc<2?[]:Object.entries(pre).filter(([s,o])=>o.c.size>=2&&o.d/pd>=(oth[s]||0)/od+.2).sort((a,b)=>b[1].d-a[1].d).slice(0,4);
+  h+=box('نشانه‌های ثبت‌شده در ۵ روز پیش از پریود',pl.length?'<p>در روزهایی که ثبت کرده‌ای، این نشانه‌ها پیش از پریود بیشتر دیده شده‌اند (نه به‌معنی علت):</p>'+pl.map(x=>'<div class="item"><span>'+x[0]+'</span><b>'+fa(x[1].d)+' روز در '+fa(x[1].c.size)+' چرخه</b></div>').join(''):NE,'این تحلیل بر اساس '+fa(pd)+' روز ثبت‌شده پیش از پریود در '+fa(pc)+' چرخه است (حداقل ۲ چرخه با ثبت کافی لازم است).');
+  const pn=C.map(c=>({c,v:logsIn(c.s,c.e).map(k=>S.log[k].pn).filter(x=>typeof x==='number')})).filter(x=>x.v.length>=2);
+  h+=box('روند درد',pn.length<2?NE:pn.map(x=>'<div class="item"><span>چرخه‌ی '+fmtS(P(x.c.s))+'</span><b>میانگین '+fa(avg(x.v))+' از ۱۰ ('+fa(x.v.length)+' ثبت)</b></div>').join('')+'<p style="margin-top:8px">دردی که روی مدرسه، خواب یا کارهای روزمره اثر می‌گذارد ارزش بررسی پزشکی دارد.</p>','بر اساس '+fa(pn.reduce((a,x)=>a+x.v.length,0))+' ثبت درد در '+fa(pn.length)+' چرخه.');
+  $('t-ins').innerHTML=h}
+
+/* ---- مراقبت ---- */
+function drawCare(){
+  const td=iso(now());if(S.chk.d!==td){S.chk={d:td,ids:[]};save()}
+  $('t-care').innerHTML='<div class="card"><h2>چک‌لیست راحتی امروز</h2><div class="sub">فقط پیشنهادهای عمومی برای راحتی بدن؛ هر کدام که برایت مناسب است.</div>'+CHK.map((c,i)=>'<label class="ck" style="margin:0;color:var(--tx)"><input type="checkbox" data-chk="'+i+'"'+(S.chk.ids.includes(i)?' checked':'')+'><span>'+c+'</span></label>').join('')+'<div class="note">حرکت و غذا برای جبران، تنبیه یا کنترل وزن نیستند. درباره‌ی دارو با پزشک یا داروساز صحبت کن.</div><div class="src" style="margin-top:8px">منابع: '+SRCH('n1')+' ، '+SRCH('c1')+'</div></div>'}
+
+/* ---- گزارش ---- */
+function report(){
+  const R=S.ro,ps=sorted(),since=iso(add(now(),-R.mo*30)),today=iso(now()),L=[];
+  const g=cycles().filter(c=>c.e>=since),du=ps.filter(p=>p.end&&p.start>=since).map(p=>diff(P(p.end),P(p.start))+1);
+  L.push('خلاصه‌ی ثبت چرخه قاعدگی — برای گفتگو با پزشک یا ماما');
+  L.push('بازه‌ی داده: '+fmt(P(since))+' تا '+fmt(now()));
+  L.push(ps.length?'اولین روز آخرین پریود ثبت‌شده: '+fmt(P(ps[ps.length-1].start)):'پریودی ثبت نشده است.');
+  L.push('');L.push('طول چرخه‌ها: '+(g.length?g.map(c=>fa(c.n)).join('، ')+' روز (میانگین '+fa(avg(g.map(c=>c.n)))+'، بازه '+fa(Math.min(...g.map(c=>c.n)))+' تا '+fa(Math.max(...g.map(c=>c.n)))+')':'چرخه‌ی کاملی در این بازه نیست'));
+  L.push('مدت خون‌ریزی: '+(du.length?du.map(fa).join('، ')+' روز':'تاریخ پایانی ثبت نشده'));
+  const ks=logsIn(since,iso(add(now(),1))),fl={},pn=[],pl={},sy={},fg=[];
+  ks.forEach(k=>{const e=S.log[k];if(e.f)fl[e.f]=(fl[e.f]||0)+1;if(typeof e.pn==='number')pn.push(e.pn);(e.pl||[]).forEach(x=>pl[x]=(pl[x]||0)+1);(e.s||[]).forEach(x=>(sy[x]=sy[x]||[]).push(k));(e.w||[]).forEach(x=>fg.push([k,x]))});
+  L.push('سطح خون‌ریزی (تعداد روز): '+(Object.keys(fl).length?Object.entries(fl).map(x=>x[0]+' '+fa(x[1])).join('، '):'ثبت نشده'));
+  L.push('درد: '+(pn.length?'میانگین '+fa(avg(pn))+' از ۱۰، بیشترین '+fa(Math.max(...pn))+' ('+fa(pn.length)+' ثبت)'+(Object.keys(pl).length?'؛ محل: '+Object.keys(pl).join('، '):''):'ثبت نشده'));
+  if(R.sym){L.push('');L.push('نشانه‌ها و تاریخ‌ها:');const e=Object.entries(sy).sort((a,b)=>b[1].length-a[1].length).slice(0,8);L.push(e.length?e.map(x=>'• '+x[0]+': '+fa(x[1].length)+' روز (آخرین: '+fmtS(P(x[1][x[1].length-1]))+')').join('\n'):'ثبت نشده')}
+  if(R.flags){L.push('');L.push('علائم هشدار ثبت‌شده توسط خودم:');L.push(fg.length?fg.slice(-6).map(x=>'• '+fmtS(P(x[0]))+': '+WL[x[1]]).join('\n'):'موردی ثبت نشده')}
+  if(R.notes){const n=ks.filter(k=>S.log[k].n);if(n.length){L.push('');L.push('یادداشت‌ها:');n.slice(-8).forEach(k=>L.push('• '+fmtS(P(k))+': '+S.log[k].n))}}
+  if(S.meds.trim()){L.push('');L.push('دارو/مکمل (وارد‌شده توسط خودم): '+S.meds.trim())}
+  if(S.qs.trim()){L.push('');L.push('پرسش‌های من:');L.push(S.qs.trim())}
+  L.push('');L.push('کامل بودن داده: '+fa(ks.length)+' روز ثبت‌شده در بازه‌ی '+fa(R.mo*30)+' روزه؛ '+fa(g.length)+' چرخه‌ی کامل.');
+  L.push('این ثبت‌ها را خودم وارد کرده‌ام و ممکن است ناقص باشد؛ این خلاصه تشخیص پزشکی نیست.');
+  return L.join('\n')}
+function drawRep(){
+  const R=S.ro,cb=(id,k,t)=>'<label class="ck" style="margin:0;color:var(--tx)"><input type="checkbox" id="'+id+'"'+(R[k]?' checked':'')+'><span>'+t+'</span></label>';
+  $('t-rep').innerHTML='<div class="card"><h2>چه چیزی در گزارش باشد؟</h2><div class="sub">خودت تصمیم می‌گیری؛ هیچ چیز خودکار ارسال نمی‌شود.</div><label for="ro-mo">بازه‌ی زمانی</label><select id="ro-mo">'+[3,6,12].map(n=>'<option value="'+n+'"'+(R.mo===n?' selected':'')+'>'+fa(n)+' ماه اخیر</option>').join('')+'</select>'+cb('ro-sym','sym','نشانه‌ها و تاریخ‌ها')+cb('ro-flags','flags','علائم هشدار ثبت‌شده')+cb('ro-notes','notes','یادداشت‌های متنی')+'<label for="meds">دارو یا مکمل (اختیاری؛ فقط آنچه خودت می‌نویسی)</label><textarea id="meds">'+S.meds.replace(/</g,'&lt;')+'</textarea><label for="qs">پرسش‌هایی که می‌خواهم بپرسم</label><textarea id="qs">'+S.qs.replace(/</g,'&lt;')+'</textarea></div><div class="card pvc"><h2>پیش‌نمایش</h2><div class="pv" id="rpv"></div><div class="row"><button class="btn" data-act="rp-copy">کپی متن</button><button class="btn alt" data-act="rp-dl">ذخیره (txt)</button><button class="btn alt" data-act="rp-print">چاپ / PDF</button></div></div>';updPv()}
+const updPv=()=>{const e=$('rpv');if(e)e.textContent=report()};
+
+/* ---- یادآور ---- */
+function makeIcs(){
+  const pr=predict();if(!S.rm.on||pr.state!=='ok')return null;
+  const ymd=d=>iso(d).replace(/-/g,''),U=now(),ev=(id,a,b,al)=>'BEGIN:VEVENT\r\nUID:'+id+ymd(a)+'@cycle\r\nDTSTAMP:'+ymd(U)+'T090000Z\r\nDTSTART;VALUE=DATE:'+ymd(a)+'\r\nDTEND;VALUE=DATE:'+ymd(add(b,1))+'\r\nSUMMARY:یادآور خصوصی\r\nDESCRIPTION:یک یادآور خصوصی\r\n'+(al?'BEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:یادآور خصوصی\r\nTRIGGER:-P'+S.rem+'D\r\nEND:VALARM\r\n':'')+'END:VEVENT\r\n';
+  let o='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//cycle//FA\r\nCALSCALE:GREGORIAN\r\n';
+  if(S.rm.per)o+=ev('p',pr.a,pr.b,1);
+  if(S.rm.sup)o+=ev('s',add(pr.a,-S.rem),add(pr.a,-S.rem),0);
+  if(S.rm.sym)o+='BEGIN:VEVENT\r\nUID:y'+ymd(U)+'@cycle\r\nDTSTAMP:'+ymd(U)+'T090000Z\r\nDTSTART;VALUE=DATE:'+ymd(U)+'\r\nDTEND;VALUE=DATE:'+ymd(add(U,1))+'\r\nRRULE:FREQ=WEEKLY;COUNT=12\r\nSUMMARY:یادآور خصوصی\r\nDESCRIPTION:یک یادآور خصوصی\r\nEND:VEVENT\r\n';
+  return o+'END:VCALENDAR'}
+function drawRem(){
+  const R=S.rm,tg=(k,t)=>'<label class="ck" style="margin:0;color:var(--tx)"><input type="checkbox" data-rm="'+k+'"'+(R[k]?' checked':'')+'><span>'+t+'</span></label>';
+  $('t-rem').innerHTML='<div class="card"><h2>یادآورهای خصوصی</h2><p>یادآورها اختیاری‌اند و از طریق فایل تقویم گوشی خودت کار می‌کنند؛ هیچ چیزی به سرور فرستاده نمی‌شود. متن روی صفحه‌ی قفل فقط «یک یادآور خصوصی» است. یادآور پریود فقط به بازه‌ی تخمینی اشاره می‌کند و قطعی نیست.</p><div class="seg"><button data-rmon="1"'+(R.on?' class="on"':'')+'>فعال</button><button data-rmon="0"'+(!R.on?' class="on"':'')+'>متوقف</button></div>'+tg('per','بازه‌ی تخمینی پریود (تخمین)')+tg('sup','آماده کردن محصولات بهداشتی')+tg('sym','یادآوری ثبت نشانه‌ها (هفتگی)')+'<label for="s-rem">چند روز قبل از شروع بازه‌ی تخمینی (۱ تا ۷)</label><input type="number" id="s-rem" min="1" max="7" value="'+S.rem+'"><button class="btn" data-act="ics">ساخت فایل تقویم</button><button class="btn alt" data-act="rm-del">حذف تنظیمات یادآور</button></div>'}
+
+/* ---- تنظیمات ---- */
+function drawSet(){
+  const op=(a,v)=>a.map(x=>'<option value="'+x[0]+'"'+(v===x[0]?' selected':'')+'>'+x[1]+'</option>').join('');
+  $('t-set').innerHTML='<div class="card"><h2>زمینه‌ی سنی (اختیاری)</h2><p>برای تفسیر محتاطانه‌ی بازه‌ها؛ تاریخ تولد یا هویت لازم نیست.</p><label for="s-age">بازه‌ی سنی</label><select id="s-age">'+op([['','ترجیح می‌دهم نگویم'],['<13','کمتر از ۱۳'],['13-15','۱۳ تا ۱۵'],['16-18','۱۶ تا ۱۸'],['19+','۱۹ یا بیشتر']],S.age)+'</select><label for="s-ym">حدود چند سال از اولین پریود گذشته؟</label><select id="s-ym">'+op([['','نمی‌دانم / نمی‌گویم'],['<1','کمتر از ۱ سال'],['1-3','۱ تا ۳ سال'],['>3','بیش از ۳ سال']],S.ym)+'</select></div><div class="card"><h2>حریم خصوصی</h2><p>اطلاعات چرخه و علائم تو خصوصی‌اند. بدون اجازه‌ی روشن تو نباید به سرور یا سرویس دیگری فرستاده شوند.</p><p>داده‌ها فقط در حافظه‌ی همین مرورگر روی همین دستگاه ذخیره می‌شوند؛ این برنامه ردیاب تبلیغاتی یا تحلیل‌گر ندارد و داده‌ات را برای آموزش مدل یا اشتراک‌گذاری استفاده نمی‌کند. پاک کردن داده‌های مرورگر یا تعویض دستگاه می‌تواند داده‌ها را از بین ببرد، پس گاهی خروجی بگیر.</p><button class="btn alt" data-act="exp">خروجی همه‌ی داده‌ها (JSON خوانا)</button><button class="btn alt" id="wipe">حذف همه‌ی داده‌ها</button></div>'}
+
+/* ---- ناوبری ---- */
+function tab(n){
+  curTab=n;const all=['home','cal','hist','info','more',...SUBS];
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===(SUBS.includes(n)?'more':n)));
+  all.forEach(x=>$('t-'+x).classList.toggle('hid',x!==n));
+  $('back').classList.toggle('hid',!SUBS.includes(n));
+  if(n==='rep')drawRep();if(n==='rem')drawRem();if(n==='set')drawSet();if(n==='ins')drawIns();if(n==='care')drawCare();
+  render();window.scrollTo(0,0)}
+function render(){
+  $('today').textContent=fmt(now(),true)+(SUBS.includes(curTab)?' · '+TT[curTab]:'');
+  drawHome();drawHist();drawCal();updPv();if(curTab==='ins')drawIns();
+  $('mlist').innerHTML=SUBS.map(k=>'<button class="mi" data-go="'+k+'"><span>'+TT[k]+'</span><span>›</span></button>').join('')}
+let _tt;function toast(m){let e=$('toast');if(!e){e=document.createElement('div');e.id='toast';document.body.appendChild(e)}e.textContent=m;e.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>e.classList.remove('show'),2400)}
+window.alert=m=>toast(String(m));
+function askConfirm(msg,yes,fn){let c=$('cf');if(!c){c=document.createElement('div');c.id='cf';c.className='sheet hid';c.innerHTML='<div class="sb"><div class="sh"></div><p id="cf-m" style="text-align:center;font-weight:500;line-height:1.9;margin:10px 0 4px"></p><div class="row"><button class="btn alt" id="cf-n" type="button">انصراف</button><button class="btn" id="cf-y" type="button"></button></div></div>';document.body.appendChild(c);c.addEventListener('click',e=>{if(e.target===c||e.target.id==='cf-n')c.classList.add('hid')})}
+$('cf-m').textContent=msg;$('cf-y').textContent=yes;$('cf-y').onclick=()=>{c.classList.add('hid');fn()};c.classList.remove('hid')}
+const SINGLE={f:1,md:1,en:1,sl:1,pc:1};
+const ent=()=>{const k=iso(logD);return S.log[k]||(S.log[k]={s:[],f:'',n:''})};
+function setK(k,v){
+  if(k==='del')return askConfirm('ثبت این روز حذف شود؟','حذف',()=>{delete S.log[iso(logD)];save();render()});
+  const L=ent();
+  if(k==='pnon'){if(L.pn==null)L.pn=0;else{delete L.pn;delete L.pl}}
+  else if(SINGLE[k])L[k]=L[k]===v?'':v;
+  else{const a=L[k]=L[k]||[],i=a.indexOf(v);i<0?a.push(v):a.splice(i,1)}
+  tidy(L);save();render()}
+const dl=(name,txt,type)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:type+';charset=utf-8'}));a.download=name;document.body.appendChild(a);a.click();a.remove()};
+const setTheme=()=>{return;document.documentElement.dataset.theme=S.th;const m=document.querySelector('meta[name=theme-color]');if(m)m.content=S.th==='ivory'?'#f6eee4':'#12070c'};
+const goLog=(k)=>{if(k)logD=P(k);histP='log';tab('hist')};
+document.addEventListener('click',e=>{
+  const t=e.target,c=t.closest?t.closest('[data-k],[data-go],[data-qa],[data-ld],[data-cm],[data-cal],[data-hp],[data-day],[data-dl],[data-ds],[data-ed],[data-del],[data-act],[data-th],[data-rmon],.tp'):null;
+  if(!c)return;const d=c.dataset;
+  if(d.k!==undefined)setK(d.k,d.v);
+  else if(d.go)tab(d.go);
+  else if(d.qa){if(d.qa==='cal')tab('cal');else{logD=now();histP='log';tab('hist');if(d.qa==='note')setTimeout(()=>{const n=$('note');n&&n.focus()},50)}}
+  else if(d.ld){const n=add(logD,+d.ld);if(n<=now()){logD=n;render()}}
+  else if(d.cm){calRef=add(calF,d.cm<0?-1:32);drawCal()}
+  else if(d.cal){const a=gd('d-start'),b=gd('d-end');S.cal=d.cal;save();dp('d-start');dp('d-end',1);sd('d-start',a&&a!=='INVALID'?a:iso(now()));sd('d-end',b&&b!=='INVALID'?b:'');calRef=now();render()}
+  else if(d.hp){histP=d.hp;drawHist()}
+  else if(d.day)openDay(d.day);
+  else if(d.dl){dsh.classList.add('hid');goLog(d.dl)}
+  else if(d.ds){dsh.classList.add('hid');histP='rec';tab('hist');resetForm();sd('d-start',d.ds)}
+  else if(d.ed){const p=S.periods.find(x=>x.start===d.ed);if(p){editKey=p.start;sd('d-start',p.start);sd('d-end',p.end||'');$('ftitle').textContent='ویرایش پریود';$('add').textContent='ذخیره‌ی تغییرات';$('cancel').classList.remove('hid');window.scrollTo(0,0)}}
+  else if(d.del){const k=d.del;askConfirm('این پریود از سابقه حذف شود؟','حذف',()=>{S.periods=S.periods.filter(p=>p.start!==k);save();render()})}
+  else if(d.th){S.th=d.th;save();setTheme();drawSet()}
+  else if(d.rmon!==undefined){S.rm.on=d.rmon==='1';save();drawRem()}
+  else if(c.classList.contains('tp')){const q=c.parentNode,o=q.classList.toggle('open');c.setAttribute('aria-expanded',o)}
+  else if(d.act){const a=d.act;
+    if(a==='today'){calRef=now();drawCal()}
+    else if(a==='closeday')dsh.classList.add('hid');
+    else if(a==='rp-copy'){const x=report();(navigator.clipboard?navigator.clipboard.writeText(x):Promise.reject()).then(()=>toast('کپی شد'),()=>toast('کپی ممکن نشد؛ متن را دستی انتخاب کن'))}
+    else if(a==='rp-dl')dl('cycle-summary.txt',report(),'text/plain');
+    else if(a==='rp-print')window.print();
+    else if(a==='ics'){const x=makeIcs();if(!x)toast(S.rm.on?'برای ساخت فایل، ابتدا تخمین شخصی لازم است':'یادآورها متوقف‌اند؛ ابتدا «فعال» را بزن');else dl('reminder.ics',x,'text/calendar')}
+    else if(a==='rm-del')askConfirm('تنظیمات یادآور حذف شود؟','حذف',()=>{S.rm={on:false,per:true,sup:false,sym:false};save();drawRem();toast('حذف شد')});
+    else if(a==='exp')dl('cycle-data.json',JSON.stringify({app:'چرخه من',exportedAt:new Date().toISOString(),data:S},null,2),'application/json')}
+});
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)tab(b.dataset.t)});
+document.addEventListener('click',e=>{if(e.target.id==='wipe')askConfirm('همه‌ی پریودها و ثبت‌های روزانه برای همیشه پاک شود؟','پاک کردن',()=>{S.periods=[];S.log={};save();render();drawSet();toast('داده‌ها پاک شد')})});
+document.addEventListener('input',e=>{const t=e.target,i=t.id;
+  if(i==='pn'){ent().pn=+t.value;$('pnv').textContent=fa(+t.value)+' از ۱۰';save();return}
+  if(i==='note'){const L=ent();L.n=t.value;tidy(L);save();return}
+  if(i==='q'){drawInfo(t.value);return}
+  if(i==='meds'||i==='qs'){S[i]=t.value;save();updPv()}});
+document.addEventListener('change',e=>{const t=e.target,i=t.id;
+  if(i==='ro-mo'){S.ro.mo=+t.value}else if(i==='ro-sym'||i==='ro-flags'||i==='ro-notes'){S.ro[i.slice(3)]=t.checked}
+  else if(i==='s-age'||i==='s-ym'){S[i==='s-age'?'age':'ym']=t.value;save();render();return}
+  else if(i==='s-rem'){const v=+t.value;if(v>=1&&v<=7)S.rem=v;else{t.value=S.rem;toast('عددی بین ۱ تا ۷ وارد کن')}}
+  else if(t.dataset.rm){S.rm[t.dataset.rm]=t.checked}
+  else if(t.dataset.chk!==undefined){const n=+t.dataset.chk,a=S.chk.ids;a.includes(n)?a.splice(a.indexOf(n),1):a.push(n)}
+  else return;
+  save();updPv()});
+$('add').onclick=addPeriod;$('cancel').onclick=resetForm;
+function drag(sheet,sb){let y0=null,dy=0,mv=false;const close=()=>{sheet.classList.add('hid');sb.style.transform='';sb.style.transition=''};
+  sb.addEventListener('touchstart',e=>{if(sb.scrollTop>0)return;y0=e.touches[0].clientY;dy=0;mv=false;sb.style.transition='none'},{passive:true});
+  sb.addEventListener('touchmove',e=>{if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy>6)mv=true;if(mv)sb.style.transform='translateY('+Math.max(0,dy)+'px)'},{passive:true});
+  sb.addEventListener('touchend',()=>{if(y0===null)return;y0=null;sb.style.transition='transform .25s ease';if(mv&&dy>90){sb.style.transform='translateY(100%)';setTimeout(close,220)}else sb.style.transform=''});
+  sheet.addEventListener('click',e=>{if(e.target===sheet)close()})}
+drag(dsh,dsb);drag(sh,sh.querySelector('.sb'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.sheet').forEach(s=>s.classList.add('hid'))});
+setTheme();dp('d-start');dp('d-end',1);sd('d-start',iso(now()));drawInfo();render();
+</script>
+</body></html>
